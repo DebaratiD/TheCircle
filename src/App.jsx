@@ -11,22 +11,30 @@ import {useCollectionData} from 'react-firebase-hooks/firestore';
 import { app } from './firebaseConfig';
 firebase.initializeApp(
   {
+    apiKey: "AIzaSyAonevt2dlm9PCg_7vRdURrW9Zn61rDi1c",
+    authDomain: "linkedin-clone-db777.firebaseapp.com",
+    projectId: "linkedin-clone-db777",
+    storageBucket: "linkedin-clone-db777.appspot.com",
+    messagingSenderId: "391629990290",
+    appId: "1:391629990290:web:8cc5bb9589d9ce4091b94b",
+    measurementId: "G-MTT6VDFJCK"
 
   }
 )
 const auth = firebase.auth();
 const firestore= firebase.firestore();
 
-function App() {
-  const [user]= useAuthState(auth);
+export default function App() {
+  // const [user]= useAuthState(auth);
 
   return(<div className='App'>
     <header className='App-header'>
 
     </header>
-    <section>
-      {user ? <chatroom/> : <SignIn/>}
-    </section>
+    <h1>Chat</h1>
+    {/* <section>
+      {user ? <ChatRoom/> : <SignIn/>}
+    </section> */}
   </div>) ;
   
 }
@@ -41,7 +49,7 @@ function SignIn(){
 }
 function SignOut(){
   return auth.currentUser && (
-    <button onClick={()=>auth.singnOut()}>Sign Out</button>
+    <button onClick = {() => auth.singnOut()}>Sign Out</button>
   )
 }
 function ChatRoom() {
@@ -101,4 +109,4 @@ function ChatMessage(props) {
   </>)
 }
 
-export default App;
+
