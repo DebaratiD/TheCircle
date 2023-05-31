@@ -1,16 +1,19 @@
 import React, { useState } from 'react'
-import { LoginAPI, registerAPI } from '../api/AuthAPI'
+import { LoginAPI, GoogleSigninAPI } from '../api/AuthAPI'
 import LinkedIn from '../pictures/LinkedIn.png'
 import "../Sass/LoginComponent.scss"
 import GoogleButton from 'react-google-button';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginComponent() {
+  let navigate = useNavigate();
   const [credentials, setCredentials] = useState({});
   const login = async () =>{
     try{
       let foundUser = await LoginAPI(credentials.email, credentials.password);
       toast.success('You have successfully logged in!');
+      navigate("/home");
     }
     //console.log(foundUser);
     catch(err){
@@ -25,16 +28,17 @@ export default function LoginComponent() {
       }
     }
   }
-  const register = async () =>{
+  const googleSignIn = async() => {
+    
     try{
-      let foundUser = await registerAPI(credentials.email, credentials.password);
-      alert("User successfully registered!");
-      console.log(foundUser);
+      let res = await GoogleSigninAPI();
+      toast.success('You have successfully logged in!');
+      navigate("/home");
     }
-    //console.log(foundUser);
     catch(err){
-      alert(err.message);
+        toast.error(err.message);
     }
+    
   }
   return (
     <div>
@@ -58,8 +62,8 @@ export default function LoginComponent() {
             <p>Forgot Password?</p>
             <hr data-content='or' className='hr-text'/>
             {/* Add a separator */}
-            <GoogleButton label='Sign in with Google' className='signin-btn'></GoogleButton>
-            <p style={{justifySelf:"center"}}>New to LinkedIn? <span onClick={register} className='join-now'>Join now</span></p>
+            <GoogleButton label='Sign in with Google' className='signin-btn' onClick={googleSignIn}></GoogleButton>
+            <p style={{justifySelf:"center"}}>New to LinkedIn? <span onClick={()=>navigate("/register")} className='join-now'>Join now</span></p>
         </div>
       </div>
     </div>
