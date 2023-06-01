@@ -6,12 +6,14 @@ import TollIcon from '@mui/icons-material/Toll';
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import SearchIcon from '@mui/icons-material/Search';
 import UserProfile from './UserProfile';
+import userIcon from '../pictures/user.jpg'
+
 function Sidebar() {
   return (
     <div className='sidebar'>
         <div className="sidebar-header">
             <div className="sidebar-header-img">
-                <img src="./user.jpg" alt="" />
+                <img src={userIcon} alt="" />
             
             </div>
             <div className="sidebar-header-btn">
@@ -28,7 +30,8 @@ function Sidebar() {
             </div>
         </div>
         <div className="sidebar-chatlist">
-            <UserProfile name="John Cena" photoURL="./user.jpg"/>
+            <UserProfile name="John Cena" photoURL={userIcon}/>
+            <UserProfile name="John Cena" photoURL={userIcon}/>
             
 
         </div>
