@@ -38,7 +38,6 @@ export default function LoginComponent() {
     catch(err){
         toast.error(err.message);
     }
-    
   }
   return (
     <div>
@@ -69,4 +68,6 @@ export default function LoginComponent() {
     </div>
     
   )
+
 }
+
