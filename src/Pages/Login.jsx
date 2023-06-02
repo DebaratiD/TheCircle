@@ -5,4 +5,5 @@ export default function Login() {
   return (
     <LoginComponent />
   )
+
 }
