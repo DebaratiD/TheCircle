@@ -9,7 +9,7 @@ import SendIcon from '@mui/icons-material/Send';
 import Picker from 'emoji-picker-react';
 
 function ChatContainer() {
-    const [message, setMessage]= useState(null);
+    const [message, setMessage]= useState("");
     const [openEmojiBox,setOpenEmojiBox]=useState(false);
     return (
         <div className="chat-container">
@@ -35,9 +35,10 @@ function ChatContainer() {
             
             <div className="chat-input">
                 
-            <div className="emoji-picker-react">
+            <div className="emoji-picker-react"> 
             {openEmojiBox && (<Picker 
-              onEmojiClick={(event,emojiObject) => setMessage(message + emojiObject.emoji)}/>)}
+              onEmojiClick={(emojiObject,event) => setMessage(message + emojiObject.emoji)}
+              />)}
             </div>
             
                 <div className="chat-input-btn">
