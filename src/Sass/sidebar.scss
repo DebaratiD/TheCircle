@@ -1,0 +1,76 @@
+.sidebar{
+    min-width: 300px;
+    width: 30%;
+    border-right: 1px solid darkblue;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: white;
+
+
+}
+.sidebar-header{
+    height: 50px;
+    padding: 5px 0 5px 10px;
+    background-color: aliceblue;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+}
+.sidebar-header-img{
+    width: 42px;
+}
+.sidebar-header-img > img{
+    width: 100%;
+    cursor: pointer;
+    border-radius: 100%;
+}
+.sidebar-header-btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 150px;
+   
+
+}
+.sidebar-header-btn > .MuiSvgIcon-root{
+    font-size: 23px;
+}
+.sidebar-search{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+.sidebar-search-input{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    background-color: #fff;
+    border: 1px solid lightblue;
+    border-radius: 10px;
+}
+.sidebar-search-input > .MuiSvgIcon-root{
+    font-size: 18px;
+    color: rgb(64, 64, 235);
+    margin-left: 10px;
+}
+.sidebar-search-input > input{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    margin-left: 6px;
+    margin-bottom: 2px;
+    width: 80%  ;
+}
+.sidebar-chatlist{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
