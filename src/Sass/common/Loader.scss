@@ -1,0 +1,13 @@
+.loader{
+    position: absolute;
+    height: 100vh;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    p{
+        font-family: system-ui;
+    font-weight: 500;
+    }
+}
