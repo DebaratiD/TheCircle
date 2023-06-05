@@ -8,7 +8,7 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import SendIcon from '@mui/icons-material/Send';
 import Picker from 'emoji-picker-react';
 
-function ChatContainer() {
+function ChatContainer({currentUser}) {
     const [message, setMessage]= useState(null);
     const [openEmojiBox,setOpenEmojiBox]=useState(false);
     return (
@@ -16,9 +16,9 @@ function ChatContainer() {
             <div className="chat-container-header">
                 <div className="chat-user-info">
                     <div className="chat-user-img">
-                        <img src={userIcon} alt="" />
+                        <img src={currentUser.photoURL} alt="" />
                     </div>
-                    <p><b>John Cena</b></p>
+                    <p><b>{currentUser.fullname}</b></p>
                 </div>
                 <div className="chat-header-container-btn">
                     <MoreVertIcon />

@@ -8,12 +8,13 @@ import SearchIcon from '@mui/icons-material/Search';
 import UserProfile from './UserProfile';
 import userIcon from '../pictures/user.jpg'
 
-function Sidebar() {
+function Sidebar({currentUser}) {
+    
   return (
     <div className='sidebar'>
         <div className="sidebar-header">
             <div className="sidebar-header-img">
-                <img src={userIcon} alt="" />
+                <img src={currentUser?.photoURL} alt="" />
             
             </div>
             <div className="sidebar-header-btn">
