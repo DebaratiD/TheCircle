@@ -15,6 +15,7 @@ export default function Home() {
      
       if(!res?.accessToken){
         navigate('/');
+        
       }
       else{
         const user = {
@@ -24,8 +25,9 @@ export default function Home() {
         }
         
         localStorage.setItem("user",JSON.stringify(user));
-        db.collection("users").doc(res?.email).set(user);
+        //db.collection("users").doc(res?.email).set(user);
         setLoading(false);
+        console.log(loading);
       }
     })
   }, []);
