@@ -15,6 +15,7 @@ export default function HomeLayout() {
      
       if(!res?.accessToken){
         navigate('/');
+        
       }
       else{
         const user = {
@@ -24,9 +25,9 @@ export default function HomeLayout() {
         }
         
         localStorage.setItem("user",JSON.stringify(user));
-        db.collection("users").doc(res?.email).set(user);
         navigate('/home');
         setLoading(false);
+        console.log(loading);
       }
     })
   }, []);
