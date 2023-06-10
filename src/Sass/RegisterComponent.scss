@@ -31,6 +31,14 @@ $linkedin: #0661bc;
     color:#212121;
     border: 1px solid #cec8c8d1;
     background-color: white;
+    
+    &:-webkit-autofill {
+        background-color: #9dc9f5;
+        color: #212121!important;
+    }
+    &:autofill {
+        background-color: #9dc9f5;
+        color: #212121!important;    }
 }
 .linkedinlogo{
     top: 0;

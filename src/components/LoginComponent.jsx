@@ -40,7 +40,7 @@ export default function LoginComponent() {
     }
   }
   return (
-    <div>
+    <div className='container1'>
         <img src={LinkedIn} className='linkedinlogo' title='LinkedIn'/>
       <div>
       <div style={{display:'grid'}}>

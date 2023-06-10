@@ -11,13 +11,14 @@ export default function Register() {
   useEffect(()=>{
     onAuthStateChanged(auth, (res)=>{
       if(!res?.accessToken){
-        navigate('/');
+        navigate('/register');
       }
       else{
+        navigate('/home');
         setLoading(false);
       }
     })
   }, []);
-  return loading? <Loader /> : <RegisterComponent />;
+  return !loading? <Loader /> : <RegisterComponent />;
   
 }

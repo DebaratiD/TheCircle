@@ -1,12 +1,12 @@
 import { React, useEffect, useState } from 'react'
-import HomeComponent from '../components/HomeComponent';
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../firebaseConfig'
 import db  from '../firebaseConfig'
 import { useNavigate } from 'react-router-dom';
 import Loader from '../components/common/loader';
+import HomeLayoutComponent from '../components/HomeLayoutComponent';
 
-export default function Home() {
+export default function HomeLayout() {
   const [loading, setLoading] = useState(true);
   let navigate = useNavigate();
   useEffect(()=>{
@@ -25,12 +25,11 @@ export default function Home() {
         }
         
         localStorage.setItem("user",JSON.stringify(user));
-        //db.collection("users").doc(res?.email).set(user);
+        navigate('/home');
         setLoading(false);
-        console.log(loading);
       }
     })
   }, []);
-  return loading? <Loader /> : <HomeComponent />;
+  return loading? <Loader /> : <HomeLayoutComponent/>;
 
 }
