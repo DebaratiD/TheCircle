@@ -27,10 +27,9 @@ export default function HomeLayout() {
         localStorage.setItem("user",JSON.stringify(user));
         navigate('/home');
         setLoading(false);
-        console.log(loading);
       }
     })
   }, []);
-  return !loading? <Loader /> : <HomeLayoutComponent/>;
+  return loading? <Loader /> : <HomeLayoutComponent/>;
 
 }
