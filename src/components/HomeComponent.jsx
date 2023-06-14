@@ -4,7 +4,7 @@ import PostStatus from './common/PostUpdate/index';
 
 export default function HomeComponent() {
   return (
-    <div>
+    <div className='home-container'>
     <PostStatus/>
     </div>
   )
