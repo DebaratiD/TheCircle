@@ -1,12 +1,18 @@
 import { React, useState } from 'react'
-import LinkedInMini from '../../pictures/In-Blue-72.png'
+import LinkedInMini from '../../pictures/circleIcon.png'
 import { AiOutlineSearch, AiTwotoneHome } from 'react-icons/ai';
 import { HiUsers,HiBriefcase } from 'react-icons/hi'
 import  { BsFillChatDotsFill, BsFillGrid3X3GapFill, BsFillPersonFill, BsFillBellFill } from 'react-icons/bs'
 import UserInfoComponent from '../UserInfoComponent';
 import '../../Sass/TopNavbar.scss';
-
+import { useNavigate } from 'react-router-dom';
 export default function TopNavbar() {
+  const [user,setUser]=useState(JSON.parse(localStorage.getItem("user")));
+    let navigate=useNavigate();
+    const goToRoute=(route)=>{
+      navigate(route);
+    }
+    
     let [showUserInfo, setShowUserInfo] = useState(false);
     
     let divelem = document.getElementById('user-div');
@@ -18,18 +24,20 @@ export default function TopNavbar() {
     <div className='top-navbar'>
         <div className='react-icons'>
             <img src={LinkedInMini} className='linkedinlogomini' title='LinkedIn'/>
-            <AiOutlineSearch size={24} className='react-icon'/>
-            <AiTwotoneHome  size={24} className='react-icon'/>
-            <HiUsers  size={24} className='react-icon'/>
-            <HiBriefcase size={24} className='react-icon'/>
-            <BsFillChatDotsFill  size={24} className='react-icon'/>
+            <AiOutlineSearch size={30} className='react-icon'/>
+            <input type="text" name="search" placeholder='Search...' /> 
+            <AiTwotoneHome  size={30} className='react-icon' onClick={()=>{goToRoute('/home')}}/>
+            <HiUsers  size={30} className='react-icon'/>
+            <HiBriefcase size={30} className='react-icon'/>
+            <BsFillChatDotsFill  size={30} className='react-icon' onClick={()=>{goToRoute('/chat')}}/>
         </div>
         <div className='right-options'>
-            <BsFillGrid3X3GapFill size={24} className='react-icon'/>
-            <BsFillBellFill size={24} className='react-icon'/>
-            <span className='profile-outline' onClick={toggle}>
-                <BsFillPersonFill size={20} className='react-icon'/>
-            </span>
+            <BsFillGrid3X3GapFill size={30} className='react-icon'/>
+            <BsFillBellFill size={30} className='react-icon'/>
+            <div className="sidebar-header-img">
+              <img src={user?.photoURL} alt="" onClick={toggle}/>
+            
+            </div>
             {showUserInfo && <UserInfoComponent/>}
         </div>
     </div>

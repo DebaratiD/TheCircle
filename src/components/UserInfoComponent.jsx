@@ -2,7 +2,7 @@ import React from 'react'
 import { LogOutAPI } from '../api/AuthAPI'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-//import '../Sass/TopNavbar.scss';
+import '../Sass/TopNavbar.scss';
 
 export default function UserInfoComponent() {
     const navigate = useNavigate();
