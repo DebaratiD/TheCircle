@@ -1,6 +1,6 @@
 import React ,{useState} from 'react';
-import "../Sass/chatContainer.scss";
-import userIcon from '../pictures/user.jpg';
+import "../../Sass/chatContainer.scss";
+import userIcon from '../../pictures/user.jpg';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ChatMessage from './ChatMessage';
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
@@ -9,7 +9,7 @@ import SendIcon from '@mui/icons-material/Send';
 import Picker from 'emoji-picker-react';
 
 function ChatContainer({currentUser}) {
-    const [message, setMessage]= useState(null);
+    const [message, setMessage]= useState("");
     const [openEmojiBox,setOpenEmojiBox]=useState(false);
     return (
         <div className="chat-container">
@@ -37,7 +37,7 @@ function ChatContainer({currentUser}) {
                 
             <div className="emoji-picker-react">
             {openEmojiBox && (<Picker 
-              onEmojiClick={(event,emojiObject) => setMessage(message + emojiObject.emoji)}/>)}
+              onEmojiClick={(emojiObject,event) => setMessage(message + emojiObject.emoji)}/>)}
             </div>
             
                 <div className="chat-input-btn">

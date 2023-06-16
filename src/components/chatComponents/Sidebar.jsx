@@ -1,12 +1,12 @@
 import React from 'react'
-import "../Sass/sidebar.scss"
+import "../../Sass/sidebar.scss"
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import CloseIcon from '@mui/icons-material/Close';
 import TollIcon from '@mui/icons-material/Toll';
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import SearchIcon from '@mui/icons-material/Search';
 import UserProfile from './UserProfile';
-import userIcon from '../pictures/user.jpg'
+import userIcon from '../../pictures/user.jpg'
 
 function Sidebar({currentUser}) {
     

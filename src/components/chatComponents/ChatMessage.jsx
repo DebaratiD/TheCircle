@@ -1,5 +1,5 @@
 import React from 'react'
-import "../Sass/chatMessage.scss"
+import "../../Sass/chatMessage.scss"
 function ChatMessage({message,time}) {
   return (
     <div className="chat-message">

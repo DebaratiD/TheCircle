@@ -3,7 +3,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../firebaseConfig'
 import { useNavigate } from 'react-router-dom'
 import Loader from '../components/common/loader'
-import ChatComponent from '../components/ChatComponent'
+import ChatComponent from '../components/chatComponents/ChatComponent'
 
 export default function Chat() {
   const [user,setUser]=useState(JSON.parse(localStorage.getItem("user")));

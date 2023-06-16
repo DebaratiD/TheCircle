@@ -1,5 +1,5 @@
 import React from 'react'
-import "../Sass/UserProfile.scss"
+import "../../Sass/UserProfile.scss"
 function UserProfile({name,photoURL}) {
   return (
     <div className="user-profile">

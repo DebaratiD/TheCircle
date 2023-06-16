@@ -1,22 +1,25 @@
 import { React, useState } from 'react'
-import LinkedInMini from '../../pictures/circleIcon.png'
+import LinkedInMini from '../../../pictures/circleIcon.png'
 import { AiOutlineSearch, AiTwotoneHome } from 'react-icons/ai';
 import { HiUsers,HiBriefcase } from 'react-icons/hi'
 import  { BsFillChatDotsFill, BsFillGrid3X3GapFill, BsFillPersonFill, BsFillBellFill } from 'react-icons/bs'
-import UserInfoComponent from '../UserInfoComponent';
-import '../../Sass/TopNavbar.scss';
+import UserInfoComponent from '../../../components/UserInfoComponent';
+import '../../../Sass/TopNavbar.scss';
 import { useNavigate } from 'react-router-dom';
+import userIcon from '../../../pictures/user.jpg'
+
 export default function TopNavbar() {
   const [user,setUser]=useState(JSON.parse(localStorage.getItem("user")));
     let navigate=useNavigate();
     const goToRoute=(route)=>{
       navigate(route);
     }
-    
+
     let [showUserInfo, setShowUserInfo] = useState(false);
     
     let divelem = document.getElementById('user-div');
-
+    const UserIcon=user?.photoURL!=null?user?.photoURL:userIcon;
+    
     const toggle = () => {       
         setShowUserInfo(!showUserInfo);
     }
@@ -35,7 +38,7 @@ export default function TopNavbar() {
             <BsFillGrid3X3GapFill size={30} className='react-icon'/>
             <BsFillBellFill size={30} className='react-icon'/>
             <div className="sidebar-header-img">
-              <img src={user?.photoURL} alt="" onClick={toggle}/>
+              <img src={UserIcon} alt="" onClick={toggle}/>
             
             </div>
             {showUserInfo && <UserInfoComponent/>}
