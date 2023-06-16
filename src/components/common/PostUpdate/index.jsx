@@ -4,8 +4,9 @@ import "./index.scss";
 import ModalComponent from "../Modal";
 import PostCard from '../PostCard';
 import { getCurrentTimeStamp } from '../../../helpers/useMoment';
+import { getUniqueId } from '../../../helpers/getUniqueId';
 
-function PostStatus() {
+function PostStatus({currentUser}) {
   let userEmail=JSON.parse(localStorage.getItem("user"));
   const [modalOpen, setModalOpen] = useState(false);
   const [status,setStatus]=useState("");
@@ -15,8 +16,9 @@ function PostStatus() {
     let object={
       status:status,
       timeStamp: getCurrentTimeStamp("LLL"),
-      userEmail: userEmail.email
-      
+      userEmail: userEmail.email,
+      userName: currentUser.name,
+      postID: getUniqueId(),
     }
     
     await postStatus(object);
@@ -27,7 +29,7 @@ function PostStatus() {
   useMemo(()=>{
     getStatus(setAllStatus);
   },[]);
-  console.log(AllStatuses);
+  //console.log(AllStatuses);
   return (
     <div className='post-status-main'>
     <div className="post-status"  >  
