@@ -1,11 +1,13 @@
 import React from 'react'
 import './index.scss'
+
 function PostCard({posts}) {
   return (
-    <div className='post-card'>
+    <div className='post-card'  >
+      <p className='username'>{posts.userName}</p>
         <p className='timestamp'>{posts.timeStamp}</p>
         <p className='status'>{posts.status}</p></div>
   )
 }
 
-export default PostCard
+export default PostCard;
