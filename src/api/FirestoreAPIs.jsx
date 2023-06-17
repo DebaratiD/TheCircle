@@ -2,25 +2,27 @@ import { toast } from 'react-toastify';
 import {firestore} from '../firebaseConfig';
 import { addDoc,collection, onSnapshot } from "firebase/firestore";
 
-let dbRef = collection(firestore,"posts");
+
+let postRef = collection(firestore,"posts");
 let userRef = collection(firestore,"users");
 
 export const postStatus=(object)=>{
 
-    addDoc(dbRef,object).then(
+    addDoc(postRef,object).then(
         (res)=>{toast.success('Document has been added sucessfully')}
     ).catch((err)=>{
         console.log(err);
     })
 };
 export const getStatus = (setAllStatus)=>{
-    onSnapshot(dbRef,(response)=>{
+    onSnapshot(postRef,(response)=>{
         setAllStatus(
             response.docs.map((doc)=>{
                 return {...doc.data(),id: doc.id};
             })
         );
     })
+
 }
 export const postUserData = (object) => {
     addDoc(userRef, object)
@@ -28,8 +30,9 @@ export const postUserData = (object) => {
     .catch((err)=>{console.log(err);})
 }
 
-export const getUserData = (setCurrentUser) => {
+export const getCurrentUser = (setCurrentUser) => {
     const userEmail = JSON.parse(localStorage.getItem("user"))?.email;
+    //console.log("FirestoreAPI "+userEmail);
     onSnapshot(userRef,(response)=> {
             setCurrentUser(
                 response.docs.map((doc)=>{

@@ -9,10 +9,10 @@ export default function UserInfoComponent() {
     const signout = async() =>{
         try{
             let res = await LogOutAPI();
-            if(res){
-                localStorage.removeItem("user");
-                navigate('/');
-            }
+             localStorage.removeItem("user");
+             navigate('/');
+                
+          
         }
         catch(error){
             toast.error(error.message);
