@@ -4,16 +4,11 @@ import { auth } from '../firebaseConfig'
 
 import { useNavigate } from 'react-router-dom';
 import Loader from '../components/common/loader';
-import HomeLayoutComponent from '../components/HomeLayoutComponent';
-import { getCurrentUser } from '../api/FirestoreAPIs';
+import HomeLayoutComponent from '../components/Layouts/HomeLayoutComponent';
+
 
 export default function HomeLayout() {
   const [loading, setLoading] = useState(true);
-  const [currentUser, setCurrentUser] = useState({});
-  useMemo(()=>{
-    getCurrentUser(setCurrentUser);
-  }
-  ,[]);
   let navigate = useNavigate();
   useEffect(()=>{
     onAuthStateChanged(auth, (res)=>{
@@ -34,6 +29,6 @@ export default function HomeLayout() {
       }
     })
   }, []);
-  return loading? <Loader /> : <HomeLayoutComponent currentUser = {currentUser}/>;
+  return loading? <Loader /> : <HomeLayoutComponent/>;
 
 }

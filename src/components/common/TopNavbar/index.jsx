@@ -40,8 +40,8 @@ export default function TopNavbar() {
             <div className="sidebar-header-img">
               <img src={UserIcon} alt="" onClick={toggle}/>
             
-            </div>
             {showUserInfo && <UserInfoComponent/>}
+            </div>
         </div>
     </div>
   )

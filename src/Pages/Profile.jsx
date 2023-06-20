@@ -1,9 +1,24 @@
-import React from 'react'
-import ProfileComponent from '../components/ProfileComponent'
+import { React, useEffect, useState, useMemo } from 'react'
+import { onAuthStateChanged } from 'firebase/auth'
+import { auth } from '../firebaseConfig'
+import { useNavigate } from 'react-router-dom';
+import Loader from '../components/common/loader';
+import ProfileLayout from "../components/Layouts/ProfileLayout"
 
 export default function Profile() {
-    let username = JSON.parse(localStorage.getItem("user"))?.fullname;
-  return (
-    <div>Hi {username}!</div>
-  )
+  const [loading, setLoading] = useState(true);
+  let navigate = useNavigate();
+  useEffect(()=>{
+    onAuthStateChanged(auth, (res)=>{
+      if(!res?.accessToken){
+        navigate('/');
+        
+      }
+      else{
+       
+        setLoading(false);
+      }
+    })
+  }, []);
+  return loading? <Loader /> : <ProfileLayout/>;
 }

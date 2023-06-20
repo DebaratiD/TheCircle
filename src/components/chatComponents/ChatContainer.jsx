@@ -1,7 +1,7 @@
 import React ,{useState} from 'react';
 import "../../Sass/chatContainer.scss";
 import userIcon from '../../pictures/user.jpg';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ChatMessage from './ChatMessage';
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
@@ -15,13 +15,13 @@ function ChatContainer({currentUser}) {
         <div className="chat-container">
             <div className="chat-container-header">
                 <div className="chat-user-info">
-                    <div className="chat-user-img">
+                    {/* <div className="chat-user-img">
                         <img src={currentUser.photoURL} alt="" />
-                    </div>
-                    <p><b>{currentUser.fullname}</b></p>
+                    </div> */}
+                    <p><b>{currentUser.name}</b></p>
                 </div>
                 <div className="chat-header-container-btn">
-                    <MoreVertIcon />
+                <MoreHorizIcon/>
                 </div>
             </div>
             <div className="chat-display-container">

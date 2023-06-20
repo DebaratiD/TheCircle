@@ -8,17 +8,18 @@
     background-color: white;
     z-index: 100;
     position: relative;
-    
+    margin-top: 5px;
+    padding-bottom: 5px;
 }
-.chatPage::before{
-    width: 100vw;
-    height: 222px;
-    background-color: #a8cfed;
-    z-index: -1;
-    content: "";
-    top:0;
-    position: absolute;
-}
+// .chatPage::before{
+//     width: 100vw;
+//     height: 222px;
+//     background-color: #a8cfed;
+//     z-index: -1;
+//     content: "";
+//     top:0;
+//     position: absolute;
+// }
 .chatPage-container{
     width: 100%;
     height: 100%;

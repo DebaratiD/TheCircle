@@ -22,13 +22,15 @@ $linkedin: #0661bc;
 
 .right-options{
     display: flex;
-    align-items: baseline;
+    align-items: center;
     padding: 10px;
+    margin-right: 10px;
+    justify-content: space-between;
 
 }
 
 .top-navbar{
-    height:15%;
+    height:65px;
     background-color: whitesmoke;
     display: flex;
     width:100vw;
@@ -50,13 +52,15 @@ $linkedin: #0661bc;
     padding: 10px;
     height: 10%;
     background-color: whitesmoke;
-    top: 12%;
+    top: 8%;
     right: 5px;
     width: 10%;
     position: absolute;
     display: block;
     animation: slide-in 0.4s ease-in-out;
     overflow:hidden;
+    display: flex;
+    
     
     
 }
@@ -87,6 +91,7 @@ $linkedin: #0661bc;
 }
 .sidebar-header-img{
     width: 40px;
+    
 }
 .sidebar-header-img > img{
     width: 100%;

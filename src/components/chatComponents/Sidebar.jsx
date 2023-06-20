@@ -1,6 +1,6 @@
 import React from 'react'
 import "../../Sass/sidebar.scss"
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+
 import CloseIcon from '@mui/icons-material/Close';
 import TollIcon from '@mui/icons-material/Toll';
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
@@ -13,15 +13,18 @@ function Sidebar({currentUser}) {
   return (
     <div className='sidebar'>
         <div className="sidebar-header">
-            <div className="sidebar-header-img">
-                <img src={currentUser?.photoURL} alt="" />
+            {/* <div className="sidebar-header-img">
+                <img src={currentUser.name} alt="" />
+                
             
+            </div> */}
+            <div>
+                <p className='slidebar-top-text'>Message</p>
             </div>
             <div className="sidebar-header-btn">
                 <TollIcon/>
                 <InsertCommentIcon/>
-                <MoreHorizIcon/>
-                
+                           
             </div>
         </div>
         <div className="sidebar-search">
