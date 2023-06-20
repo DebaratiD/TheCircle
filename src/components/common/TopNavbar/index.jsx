@@ -28,7 +28,7 @@ export default function TopNavbar() {
         <div className='react-icons'>
             <img src={LinkedInMini} className='linkedinlogomini' title='LinkedIn'/>
             <AiOutlineSearch size={30} className='react-icon'/>
-            <input type="text" name="search" placeholder='Search...' /> 
+            <input type="text" name="search" placeholder='Search...'  className='search-bar'/> 
             <AiTwotoneHome  size={30} className='react-icon' onClick={()=>{goToRoute('/home')}}/>
             <HiUsers  size={30} className='react-icon'/>
             <HiBriefcase size={30} className='react-icon'/>
