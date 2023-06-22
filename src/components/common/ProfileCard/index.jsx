@@ -1,34 +1,43 @@
-import React,{useState} from 'react'
+import React,{useState,useMemo} from 'react'
 import "./index.scss"
 import ProfileEdit from '../ProfileEdit'
-import { useLocation } from 'react-router-dom'
+import { getStatus } from '../../../api/FirestoreAPIs';
+import PostCard from '../PostCard'
 
 function ProfileCard({currentUser,onEdit}) {
-  //console.log(currentUser);
-  let location = useLocation();
-  const [allStatuses, setAllStatuses] = useState([]);
-  const [currentProfile, setCurrentProfile] = useState({});
-    
+  const [AllStatuses,setAllStatus]=useState([]);
+  useMemo(()=>{
+    getStatus(setAllStatus);
+  },[]);
   return (
-    <>
-    {<div className="profile-card">
+    <div className='profile-container'>
+    <div className="profile-card">
         <div className="edit-btn">
            <button onClick={onEdit} style={{float:'right'}}>Edit</button>
         </div>
-        <h3 className="username">{currentUser.name}</h3>
-        <div className='top-outer'>
-          <div className='top-name-heading'>
-            <p className="userHeadline">{currentUser.headline}</p>
+        <div className="profile-info">
+          <div className="left-info">
+            <h3 className="username">{currentUser.name}</h3>
+            <p className="heading">{currentUser.headline}</p>
+            <p>{currentUser.location}</p>
           </div>
-          <div className='top-clg-cmp'>
-            <p className="userCollege">{currentUser.college}</p>
-            <p className="userCompany">{currentUser.company}</p>
+          <div className="right-info">
+            <p className="college">{currentUser.college}</p>
+            <p className="company">{currentUser.company}</p>
           </div>
-        </div>        
-        <p className="userLocation">{currentUser.location}</p>
-        
-    </div>}
-    </>
+        </div>     
+    </div>
+    <div>
+      {AllStatuses.filter((item)=>{
+        return item.userEmail==JSON.parse(localStorage.getItem("user"))?.email;
+      }).map((posts)=>{
+        return (<div key={posts.id}>
+          <PostCard posts={posts}/>
+          </div>)
+
+      })}
+    </div>
+    </div>
   )
 }
 
