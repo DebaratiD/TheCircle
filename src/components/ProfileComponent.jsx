@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import ProfileCard from "../components/common/ProfileCard"
 import ProfileEdit from './common/ProfileEdit';
+import "../Sass/ProfileComponent.scss";
 function ProfileComponent({currentUser}) {
     const [isEdit,setisEdit]=useState(false);
 
@@ -8,8 +9,8 @@ function ProfileComponent({currentUser}) {
         setisEdit(!isEdit);
     }
   return (
-    <div>
-    {isEdit ? (<ProfileEdit onEdit={onEdit}/>):(<ProfileCard currentUser={currentUser} onEdit={onEdit}/>)}
+    <div className='profile-container'>
+    {isEdit ? (<ProfileEdit currentUser={currentUser} onEdit={onEdit}/>):(<ProfileCard currentUser={currentUser} onEdit={onEdit}/>)}
     </div>
   )
 }

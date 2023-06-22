@@ -1,10 +1,12 @@
 import React from 'react'
 import './index.scss'
+import { useNavigate } from 'react-router-dom';
 
-function PostCard({posts}) {
+function PostCard({posts,id}) {
+  let navigate=useNavigate();
   return (
     <div className='post-card'  >
-      <p className='username'>{posts.userName}</p>
+      <p className='username' onClick={()=>navigate('/profile')}>{posts.userName}</p>
         <p className='timestamp'>{posts.timeStamp}</p>
         <p className='status'>{posts.status}</p></div>
   )
