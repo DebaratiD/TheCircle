@@ -13,7 +13,7 @@ function ProfileCard({currentUser,onEdit}) {
     <div className='profile-container'>
     <div className="profile-card">
         <div className="edit-btn">
-           <button onClick={onEdit}>Edit</button>
+           <button onClick={onEdit} style={{float:'right'}}>Edit</button>
         </div>
         <div className="profile-info">
           <div className="left-info">

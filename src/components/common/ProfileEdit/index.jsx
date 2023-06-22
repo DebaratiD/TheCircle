@@ -17,7 +17,7 @@ const updateProfileData= async()=>{
   return (
     <div className='profile-card'>
         <div className="edit-btn">
-        <button onClick={onEdit}>Go back</button>
+        <button onClick={onEdit} style={{float:'right'}}>Go back</button>
         </div>
         <div className='profile-edit-inputs'>
         <input className='edit-input' onChange={getInput} name='name' placeholder='Name' />

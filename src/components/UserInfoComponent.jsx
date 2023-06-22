@@ -19,6 +19,9 @@ export default function UserInfoComponent() {
         }
     }
   return (
-    <span id='user-div' className='user-div'><p onClick={signout} className='log-out'>Logout</p></span>
+    <span id='user-div' className='user-div'>
+      <p className='log-out' onClick={()=>navigate("/profile")}>View profile</p>
+      <p onClick={signout} className='log-out'>Logout</p>
+    </span>
   )
 }
