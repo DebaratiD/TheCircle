@@ -1,17 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./index.scss";
-function ProfileEdit({onEdit}) {
+import { editProfile } from '../../../api/FirestoreAPIs';
+
+function ProfileEdit({onEdit, currentUser}) {
+  const [editInput, setEditInput] = useState({});
+  const getInput = (event) => {
+    let {name, value} = event.target;
+    let input={};
+    if(value || value.length){
+      input[name]=value;
+    }
+    setEditInput({...editInput, ...input});
+  };
+  const updateProfileData = () => {
+    editProfile(currentUser?.userID, editInput);
+    onEdit();
+  };
   return (
 
     <div className='profile-card'>
         <div className="edit-btn">
-        <button onClick={onEdit}>Go back</button>
+        <button onClick={onEdit} style={{float:'right'}}>Go back</button>
         </div>
         <div className='profile-edit-inputs'>
-        <input className='edit-input' placeholder='Name' />
-        <input className='edit-input' placeholder='Headline' />
-        <input className='edit-input' placeholder='Company' />
-        <input className='edit-input' placeholder='College' />
+        <input onChange={getInput} className='edit-input' placeholder='Name' name='name'/>
+        <input onChange={getInput} className='edit-input' placeholder='Headline' name='headline'/>
+        <input onChange={getInput} className='edit-input' placeholder='Company' name='company'/>
+        <input onChange={getInput} className='edit-input' placeholder='College' name='college'/>
+        <button onClick={updateProfileData} className='custom-blue-btn'>Save details</button>
         </div>
     </div>
   )

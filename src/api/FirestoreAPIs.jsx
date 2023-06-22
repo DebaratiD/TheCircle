@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import {firestore} from '../firebaseConfig';
-import { addDoc,collection, onSnapshot } from "firebase/firestore";
+import { addDoc,collection, onSnapshot, doc, updateDoc } from "firebase/firestore";
 
 
 let postRef = collection(firestore,"posts");
@@ -42,4 +42,10 @@ export const getCurrentUser = (setCurrentUser) => {
                     return String(val.email).toLowerCase()===userEmail;})[0]
             );
     });
+}
+export const editProfile = (userId, payload) => {
+    let userToEdit = doc(userRef, userId);
+    updateDoc(userToEdit, payload)
+    .then(()=>{ toast.success("Data has been updated successfully.")})
+    .catch((err)=>{console.log(err);});
 }

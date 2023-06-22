@@ -9,7 +9,7 @@ function ProfileComponent({currentUser}) {
     }
   return (
     <div>
-    {isEdit ? (<ProfileEdit onEdit={onEdit}/>):(<ProfileCard currentUser={currentUser} onEdit={onEdit}/>)}
+    {isEdit ? (<ProfileEdit currentUser={currentUser}  onEdit={onEdit}/>):(<ProfileCard currentUser={currentUser} onEdit={onEdit}/>)}
     </div>
   )
 }
