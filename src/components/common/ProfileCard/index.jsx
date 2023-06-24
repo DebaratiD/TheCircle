@@ -3,6 +3,8 @@ import "./index.scss"
 import ProfileEdit from '../ProfileEdit'
 import { getStatus } from '../../../api/FirestoreAPIs';
 import PostCard from '../PostCard'
+import circleIcon from '../../../pictures/circleIcon.png';
+import { BiPencil } from 'react-icons/bi';
 
 function ProfileCard({currentUser,onEdit}) {
   const [AllStatuses,setAllStatus]=useState([]);
@@ -12,9 +14,16 @@ function ProfileCard({currentUser,onEdit}) {
   return (
     <div className='profile-container'>
     <div className="profile-card">
-        <div className="edit-btn">
-           <button onClick={onEdit} style={{float:'right'}}>Edit</button>
+      <div className='bgPicture'>
+        
+        <div className='profilePicture'>
+          <img className='profilePicture-img' src={circleIcon}/>
         </div>
+        <div className="edit-btn">
+            <BiPencil onClick={onEdit} className='edit'/>
+        </div>
+      </div>
+        
         <div className="profile-info">
           <div className="left-info">
             <h3 className="username">{currentUser.name}</h3>

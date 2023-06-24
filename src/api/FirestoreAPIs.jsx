@@ -47,7 +47,7 @@ export const getCurrentUser = (setCurrentUser) => {
 export const editProfileData=(userID,payload)=>{
     let userToEdit=doc(userRef,userID);
     updateDoc(userToEdit,payload).then(
-        (res)=>{toast.success('Profile has been added sucessfully')}
+        (res)=>{toast.success('Profile updated sucessfully')}
     ).catch((err)=>{
         console.log(err);
     })

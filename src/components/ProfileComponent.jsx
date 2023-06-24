@@ -9,7 +9,7 @@ function ProfileComponent({currentUser}) {
         setisEdit(!isEdit);
     }
   return (
-    <div className='profile-container'>
+    <div className='profile-box'>
     {isEdit ? (<ProfileEdit currentUser={currentUser} onEdit={onEdit}/>):(<ProfileCard currentUser={currentUser} onEdit={onEdit}/>)}
     </div>
   )

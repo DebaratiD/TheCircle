@@ -15,21 +15,22 @@ const updateProfileData= async()=>{
 };
 
   return (
-    <div className='profile-card'>
-        <div className="edit-btn">
-        <button onClick={onEdit} style={{float:'right'}}>Go back</button>
-        </div>
+    <div className='profile-container'>
+      <div className='profile-card' style={{padding:'10px'}}>
         <div className='profile-edit-inputs'>
-        <input className='edit-input' onChange={getInput} name='name' placeholder='Name' />
-        <input className='edit-input' onChange={getInput} name='headline' placeholder='Headline' />
-        <input className='edit-input' onChange={getInput} name='location' placeholder='Location' />
-        <input className='edit-input' onChange={getInput} name='company' placeholder='Company' />
-        <input className='edit-input' onChange={getInput} name='college' placeholder='College' />
+          <input className='edit-input' onChange={getInput} name='name' placeholder='Name' />
+          <input className='edit-input' onChange={getInput} name='headline' placeholder='Headline' />
+          <input className='edit-input' onChange={getInput} name='location' placeholder='Location' />
+          <input className='edit-input' onChange={getInput} name='company' placeholder='Company' />
+          <input className='edit-input' onChange={getInput} name='college' placeholder='College' />
         </div>
         <div className='savebtn-container'>
           <button className='save-btn' onClick={updateProfileData}>Save</button>
+          <button className='exit-btn' onClick={onEdit}>Go back</button>
         </div>
+      </div>
     </div>
+    
   )
 }
 
