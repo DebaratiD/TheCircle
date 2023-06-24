@@ -60,13 +60,13 @@ $linkedin: #0661bc;
     top: 70px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     right: 5px;
-    width: 10%;
     position: fixed;
     display: block;
     animation: slide-in 0.4s ease-in-out;
     overflow:hidden;
     display: flex;
     z-index: 99;
+    flex-direction: column;
     
     
     
@@ -99,6 +99,16 @@ $linkedin: #0661bc;
 .sidebar-header-img{
     width: 40px;
     
+}
+.profile-menu{
+        top: 70px;  
+        position: absolute;
+        right: 5px;
+        z-index: 99;
+        overflow:hidden;
+        display: block;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      
 }
 .sidebar-header-img > img{
     width: 100%;

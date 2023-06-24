@@ -9,6 +9,8 @@ import HomeLayoutComponent from '../components/Layouts/HomeLayoutComponent';
 
 export default function HomeLayout() {
   const [loading, setLoading] = useState(true);
+  
+ 
   let navigate = useNavigate();
   useEffect(()=>{
     onAuthStateChanged(auth, (res)=>{
@@ -18,9 +20,9 @@ export default function HomeLayout() {
       }
       else{
         const user = {
-          fullname: res?.displayName,
           email: res?.email,
-          photoURL: res?.photoURL
+          photoURL: res?.photoURL,
+          userID: res?.uid
         }
         
         localStorage.setItem("user",JSON.stringify(user));

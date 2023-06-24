@@ -31,21 +31,24 @@
             }
 
         }
+        .left-info{
+            line-height: 20px;
+        }
     }
     
-    .edit-btn{   
-      right: 20px;
-      position: absolute;
-      button{
-         cursor: pointer;
-      }
-      
-    }
+ 
+    
     .edit-btn{
         position: absolute;
         right: 20px;
-        button{
+        .edit-icon{
             cursor: pointer;
+            padding: 10px;
+        }
+        .edit-icon:hover{
+            background-color: rgb(197,197,197);
+            padding: 10px;
+            border-radius: 50%;
         }
     }
     .username{

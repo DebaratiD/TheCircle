@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import {firestore} from '../firebaseConfig';
-import { addDoc,collection, onSnapshot ,doc,updateDoc} from "firebase/firestore";
+import { addDoc,collection, onSnapshot ,doc,updateDoc, query, where} from "firebase/firestore";
 
 
 let postRef = collection(firestore,"posts");
@@ -51,4 +51,29 @@ export const editProfileData=(userID,payload)=>{
     ).catch((err)=>{
         console.log(err);
     })
+    }
+
+    export const getSingleStatus = (setAllStatus,id) => {
+        const singlePostQuery = query(postRef,where("userID","==",id));
+        //console.log("FirestoreAPI "+userEmail);
+        onSnapshot(singlePostQuery,(response)=> {
+            setAllStatus(
+                    response.docs.map((doc)=>{
+                        return {...doc.data(), id:doc.id};
+                    })
+                    
+                );
+        });
+    }
+    export const getSingleUser = (setCurrentUser,email) => {
+        const singleUserQuery = query(userRef,where("email","==",email));
+        //console.log("FirestoreAPI "+userEmail);
+        onSnapshot(singleUserQuery,(response)=> {
+            setCurrentUser(
+                    response.docs.map((doc)=>{
+                        return {...doc.data(), id:doc.id};
+                    })
+                    
+                );
+        });
     }

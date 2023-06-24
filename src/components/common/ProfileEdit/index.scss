@@ -5,6 +5,7 @@ $linkedin: #0661bc;
     margin-top: 40px;
     gap: 10px;
     .edit-input{
+
         padding: 10px;
         background-color: white;
         height: 20px;
@@ -13,13 +14,40 @@ $linkedin: #0661bc;
         border-radius: 3px;
         font-family: system-ui;
         font-size: 16px;
-        margin: 10px 0px;
+        margin: -5px 0px;
+    }
+    .edit-input:focus{
+        outline: 1px solid linkedin;
+    }::placeholder{
+        font-family: system-ui;
+        font-size: 16px;
+    }
+    .label{
+        font-family: system-ui;
+    }
+    .edit-textarea{
+        padding: 10px;
+        background-color: white;
+        
+        outline: none;
+        border: 1px solid #212121;
+        border-radius: 3px;
+        font-family: system-ui;
+        font-size: 16px;
+        margin: -5px 0px;
+    }
+    .edit-textarea:focus{
+        outline: 1px solid linkedin;
+    }::placeholder{
+        font-family: system-ui;
+        font-size: 16px;
     }
 
 }
 .savebtn-container{
     display: flex;
     justify-content: center;
+    margin-top: 10px;
 }
 .save-btn{
     width: 300px;
@@ -48,7 +76,7 @@ $linkedin: #0661bc;
 .custom-blue-btn{
     width: 55%;
     height: 40px;
-    background-color: $linkedinblue1;
+    background-color: $linkedin;
     color: #f2f2f2;
     border-radius: 50px;
     cursor: pointer;

@@ -1,12 +1,31 @@
-import React from 'react'
-import LogOutAPI from '../../../api/AuthAPI'
+import React ,{useMemo,useState} from 'react'
+import { useNavigate } from 'react-router-dom'
+import { getCurrentUser } from '../../../api/FirestoreAPIs'
+
+import {LogOutAPI} from '../../../api/AuthAPI'
 import './index.scss'
+import Button from "../Button"
+
 function ProfilePopup() {
+  let navigate=useNavigate();
+    const [currentUser, setCurrentUser] = useState({});
+    useMemo(()=>{
+      getCurrentUser(setCurrentUser);
+    }
+    ,[]);
+
+  const profilePage=()=>{
+    navigate("/profile",{state:{id:loggedInUser?.userID}})
+    window.location.reload();
+  }
+  const loggedInUser= JSON.parse(localStorage.getItem('user'));
     return (
       <div className="popup-card">
-        <ul className="popup-options">
-            <li className="popup-option" onClick={LogOutAPI}>Logout</li>
-        </ul>
+        <p className='name'>{currentUser.name}</p>
+        <p className='headline'>{currentUser.headline}</p>
+        <Button title="View Profile" onClick={profilePage }/>
+        <Button title="Log out" onClick={LogOutAPI }/>
+     
       </div>
     );
 

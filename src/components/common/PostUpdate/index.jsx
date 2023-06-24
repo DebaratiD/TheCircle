@@ -19,6 +19,7 @@ function PostStatus({currentUser}) {
       userEmail: userEmail.email,
       userName: currentUser.name,
       postID: getUniqueId(),
+      userID:JSON.parse(localStorage.getItem("user"))?.userID
     }
     
     await postStatus(object);
