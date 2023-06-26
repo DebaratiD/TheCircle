@@ -26,6 +26,7 @@
                 color:rgba(0,0,0,0.9);
 
             }
+           
             .company{
                 margin-top: -15px;
             }
@@ -35,8 +36,13 @@
             line-height: 20px;
         }
     }
-    
- 
+    .website{
+        color: #004c75 !important;
+        -webkit-link: #004c75 ;
+    }
+   .skill-label{
+    font-weight: 600;
+   }
     
     .edit-btn{
         position: absolute;
