@@ -6,6 +6,7 @@ import { addDoc,collection, onSnapshot ,doc,updateDoc, query, where,setDoc,delet
 let postRef = collection(firestore,"posts");
 let userRef = collection(firestore,"users");
 let likeRef= collection(firestore,"likes");
+let commentRef=collection(firestore,"comments");
 
 export const postStatus=(object)=>{
 
@@ -107,5 +108,40 @@ export const editProfileData=(userID,payload)=>{
    }catch(err){
       console.log(err);
    }
+
+   }
+   
+   export const postComments=(postID,comment,timestamp,userID,name,email)=>{
+    try{
+        addDoc(commentRef,{
+            userID,
+            postID,
+            comment,
+            timestamp,
+            name,
+            email
+        });
+
+    }catch(err){
+        console.log(err);
+    }
+   }
+
+   export const getcomments=(postID,setPostedComment)=>{
+    try{
+        let singleCommentQuery=query(commentRef,where("postID","==",postID));
+        onSnapshot(singleCommentQuery,(response)=>{
+            const comment=response.docs.map((doc)=>{
+                return {
+                     id: doc.id,
+                     ...doc.data(),
+                };
+            });
+            setPostedComment(comment);
+        });
+
+    }catch(err){
+        console.log(err);
+    }
 
    }
