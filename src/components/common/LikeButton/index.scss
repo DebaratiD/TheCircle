@@ -71,7 +71,7 @@
     
 }
 .add-comment-btn{
-    width: 150px;
+    width: 100px;
     height: 35px;
     background-color: #0a66c2;
     outline: none;
@@ -80,7 +80,9 @@
     cursor: pointer;
     margin-top: 15px;
     margin-bottom: 15px;
-    font-weight: bold;
+    color: white;
+    font-family: system-ui;
+    
     
 
 }
@@ -98,6 +100,7 @@
         text-decoration: none;
         margin-left: 10px;
         font-weight: bold;
+        text-decoration: underline;
 
     }
     .comment{

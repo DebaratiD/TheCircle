@@ -49,7 +49,7 @@ function LikeButton({userID,postID}) {
         </div>
        {showCommentBox? (<>
         <input onChange={getcomment}  placeholder='Add a comment' className='comment-input' value={comment} />   
-        <button onClick={addComment} className='add-comment-btn'>Add Comments</button>
+        <button onClick={addComment} className='add-comment-btn'>Add Comment</button>
         {
          postedComment.length>0?(
          postedComment.map((comment) => {
