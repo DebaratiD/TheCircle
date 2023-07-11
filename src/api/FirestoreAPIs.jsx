@@ -79,30 +79,7 @@ export const editProfileData=(userID,payload)=>{
     })
     }
 
-    export const getSingleStatus = (setAllStatus,id) => {
-        const singlePostQuery = query(postRef,where("userID","==",id));
-        //console.log("FirestoreAPI "+userEmail);
-        onSnapshot(singlePostQuery,(response)=> {
-            setAllStatus(
-                    response.docs.map((doc)=>{
-                        return {...doc.data(), id:doc.id};
-                    })
-                    
-                );
-        });
-    }
-    export const getSingleUser = (setCurrentUser,email) => {
-        const singleUserQuery = query(userRef,where("email","==",email));
-        //console.log("FirestoreAPI "+userEmail);
-        onSnapshot(singleUserQuery,(response)=> {
-            setCurrentUser(
-                    response.docs.map((doc)=>{
-                        return {...doc.data(), id:doc.id};
-                    })
-                    
-                );
-        });
-    }
+
    export const likePost=(userID,postID,liked)=>{
     try{
         let docToLike=doc(likeRef,`${userID}_${postID}`);
