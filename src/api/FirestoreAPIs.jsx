@@ -24,6 +24,28 @@ export const getStatus = (setAllStatus)=>{
     })
 
 }
+export const getSingleUser = (setCurrentUser, email) =>{
+    const singleUserQuery = query(userRef, where("email", "==", email))
+    onSnapshot(singleUserQuery, (response)=>{
+        setCurrentUser(
+            response.docs.map((docs)=>{
+                return {... docs.data(), id:docs.id};
+            })[0]
+        )
+    })
+}
+
+export const getSingleStatus = (setAllStatus, id) =>{
+    const singlePostQuery = query(postsRef, where("userID", "==", id))
+    onSnapshot(singlePostQuery, (response)=>{
+        setAllStatus(
+            response.docs.map((docs)=>{
+                return  {...docs.data(), id:docs.id};
+            })
+        )
+    })
+}
+
 export const postUserData = (object) => {
     addDoc(userRef, object)
     .then(()=>{})
@@ -45,7 +67,9 @@ export const getCurrentUser = (setCurrentUser) => {
 }
 
 export const editProfileData=(userID,payload)=>{
+    console.log(userID, payload)
     let userToEdit=doc(userRef,userID);
+     
     updateDoc(userToEdit,payload).then(
         (res)=>{toast.success('Profile updated sucessfully')}
     ).catch((err)=>{

@@ -19,19 +19,22 @@
         .profilePicture{
             left: 25px;
             overflow: hidden;
-            --heightImg:180px;
-            --widthImg:180px;
-            height:var(--heightImg);
-            width: var(--widthImg);
+            --heightImg:146px;
+            --widthImg:145px;
+            // height:var(--heightImg);
+            // width: var(--widthImg);
             position: absolute;
-            width: 180px;
             background-color: white;
             top: 25px;
-            border: 2px solid lightgrey;
-            border-radius: 100px;
+            border: 1px solid lightgrey;
+            border-radius: 90px;
+            padding: 1px;
+
             img{ 
             height:var(--heightImg);
             width: var(--widthImg);
+            padding:1px;
+            border-radius: 80px;
             }
         }
     }
