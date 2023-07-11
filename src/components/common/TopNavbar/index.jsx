@@ -7,6 +7,7 @@ import UserInfoComponent from '../../../components/UserInfoComponent';
 import '../../../Sass/TopNavbar.scss';
 import { useNavigate } from 'react-router-dom';
 import userIcon from '../../../pictures/user.jpg'
+import ProfilePopup from '../ProfilePopup/index'
 
 export default function TopNavbar() {
   const [user,setUser]=useState(JSON.parse(localStorage.getItem("user")));
@@ -18,8 +19,8 @@ export default function TopNavbar() {
     let [showUserInfo, setShowUserInfo] = useState(false);
     
     let divelem = document.getElementById('user-div');
-    const UserIcon=user?.photoURL!=null?user?.photoURL:userIcon;
-    
+    const UserIcon=user?.photoURL!=null?(user?.photoURL):userIcon;
+  
     const toggle = () => {       
         setShowUserInfo(!showUserInfo);
     }
@@ -37,11 +38,16 @@ export default function TopNavbar() {
         <div className='right-options'>
             <BsFillGrid3X3GapFill size={30} className='react-icon'/>
             <BsFillBellFill size={30} className='react-icon'/>
+           
             <div className="sidebar-header-img">
               <img src={UserIcon} alt="" onClick={toggle}/>
-            
-            {showUserInfo && <UserInfoComponent/>}
+              </div>
+            {/* {showUserInfo && <UserInfoComponent/>} */}
+            <div className='profile-menu'>
+            {showUserInfo && <ProfilePopup/>}
             </div>
+           
+            
         </div>
     </div>
   )

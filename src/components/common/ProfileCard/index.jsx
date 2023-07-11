@@ -2,6 +2,7 @@ import React,{useState,useMemo} from 'react'
 import "./index.scss"
 import ProfileEdit from '../ProfileEdit'
 import { editProfileData, getSingleStatus, getSingleUser } from '../../../api/FirestoreAPIs';
+import { HiOutlinePencil } from "react-icons/hi";
 import PostCard from '../PostCard'
 import circleIcon from '../../../pictures/circleIcon.png';
 import { BiPencil } from 'react-icons/bi';
@@ -12,6 +13,7 @@ function ProfileCard({currentUser,onEdit}) {
   let location = useLocation();
   const [AllStatuses,setAllStatus]=useState([]);
   const [currentImage, setCurrentImage] = useState({});
+  const [currentProfile, setCurrentProfile] = useState({});
   const [imageLink, setImageLink] = useState('');
   let isProfilePic = false;
   const getImage = (event)=>{
@@ -54,20 +56,41 @@ function ProfileCard({currentUser,onEdit}) {
           <div className="left-info">
             <input type='file' onChange={getImage}/>
             <button onClick={uploadImage}>Upload</button>
-            <h3 className="username">{currentUser.name}</h3>
-            <p className="heading">{currentUser.headline}</p>
-            <p>{currentUser.location}</p>
+            <h3 className="username">{Object.values(currentProfile).length==0?
+            currentUser.name:currentProfile[0]?.name}</h3>
+            <p className="heading">
+            {Object.values(currentProfile).length==0?
+            currentUser.headline:currentProfile[0]?.headline}
+            </p>
+            <p className="location">{Object.values(currentProfile).length==0?
+            `${currentUser.city},${currentUser.country}`:`${currentProfile[0]?.city},${currentProfile[0]?.country}`}
+            </p>
+            <a className="website" target="_blank" href=
+            {Object.values(currentProfile).length==0?
+            `${currentUser.website}`:currentProfile[0]?.website}>
+              {Object.values(currentProfile).length==0?
+            `${currentUser.website}`:currentProfile[0]?.website}
+            </a>
           </div>
           <div className="right-info">
-            <p className="college">{currentUser.college}</p>
-            <p className="company">{currentUser.company}</p>
+            <p className="college">
+            {Object.values(currentProfile).length==0?
+            currentUser.college:currentProfile[0]?.college}</p>
+            <p className="company">{Object.values(currentProfile).length==0?
+            currentUser.company:currentProfile[0]?.company}</p>
           </div>
-        </div>     
+         
+        </div>    
+        <p className="about-me">
+            {Object.values(currentProfile).length==0?
+            currentUser.aboutMe:currentProfile[0]?.aboutMe}</p>
+         <p className="skills">
+          <span className="skill-label">Skills</span>:&nbsp;
+            {Object.values(currentProfile).length==0?
+            currentUser.skills:currentProfile[0]?.skills}</p>
     </div>
     <div>
-      {AllStatuses.filter((item)=>{
-        return item.userEmail==JSON.parse(localStorage.getItem("user"))?.email;
-      }).map((posts)=>{
+      {AllStatuses.map((posts)=>{
         return (<div key={posts.id}>
           <PostCard posts={posts}/>
           </div>)

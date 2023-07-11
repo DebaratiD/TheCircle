@@ -19,6 +19,7 @@ function PostStatus({currentUser}) {
       userEmail: userEmail.email,
       userName: currentUser.name,
       postID: getUniqueId(),
+      userID:JSON.parse(localStorage.getItem("user"))?.userID
     }
     
     await postStatus(object);
@@ -40,7 +41,7 @@ function PostStatus({currentUser}) {
     <ModalComponent setStatus={setStatus} modalOpen={modalOpen} sendStatus={sendStatus} setModalOpen={setModalOpen} status={status} />
     <div>
       {AllStatuses.map((posts)=>{
-        return <PostCard posts={posts}/>
+        return <PostCard posts={posts} id={posts.userID}/>
 
       })}
     </div>
