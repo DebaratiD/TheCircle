@@ -1,0 +1,104 @@
+$linkedin: #0661bc;
+
+.profile-edit-inputs{
+    display: grid;
+    margin-top: 40px;
+    gap: 12px;
+    .edit-input{
+
+        padding: 10px;
+        background-color: white;
+        height: 20px;
+        outline: none;
+        border: 1px solid #212121;
+        border-radius: 3px;
+        font-family: system-ui;
+        font-size: 16px;
+        margin: -5px 0px;
+    }
+    .edit-input:focus{
+        outline: 1px solid linkedin;
+    }::placeholder{
+        font-family: system-ui;
+        font-size: 16px;
+    }
+    label{
+        font-family: system-ui;
+        margin-bottom: -8px;
+       
+    }
+    .edit-textarea{
+        padding: 10px;
+        background-color: white;
+        
+        outline: none;
+        border: 1px solid #212121;
+        border-radius: 3px;
+        font-family: system-ui;
+        font-size: 16px;
+        margin: -5px 0px;
+    }
+    .edit-textarea:focus{
+        outline: 1px solid linkedin;
+    }::placeholder{
+        font-family: system-ui;
+        font-size: 16px;
+    }
+
+}
+.savebtn-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.save-btn{
+    width: 300px;
+    height: 50px;
+    background-color: $linkedin;
+    color: #f2f2f2;
+    border-radius: 50px;
+    cursor: pointer;
+    margin: 5px auto;
+    justify-self: center;
+    font-size: 16px;
+    box-shadow: none;
+    border: none;
+    &:hover{
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        transition: box-shadow 0.2s ease-in;
+    }
+    
+    &:hover::after{
+        box-shadow: none;
+        transition: box-shadow 0.4s ease-out;
+    }
+
+    
+
+.custom-blue-btn{
+    width: 55%;
+    height: 40px;
+    background-color: $linkedin;
+    color: #f2f2f2;
+    border-radius: 50px;
+    cursor: pointer;
+    margin: 5px auto;
+    justify-self: center;
+    font-size: 16px;
+    box-shadow: none;
+    border: none;
+    &:hover{
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        transition: box-shadow 0.2s ease-in;
+    }
+    
+    &:hover::after{
+        box-shadow: none;
+        transition: box-shadow 0.4s ease-out;
+    }
+
+}
+}
+.close-icon{
+    cursor: pointer;
+}

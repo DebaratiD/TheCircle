@@ -1,0 +1,84 @@
+.profile-container{
+    display: flex;
+    flex-direction: column;
+}
+.profile-card{
+    width: 550px;
+    height: auto;
+    background-color: whitesmoke;
+    margin:auto;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 10px;
+    position: relative;
+    .profile-info{
+        display: flex;
+        justify-content: space-between;
+        .right-info{
+            margin-top: 20px;
+            margin-right:20px;
+            .company,
+            .college{
+                font-family: system-ui;
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 30px;
+                color:rgba(0,0,0,0.9);
+
+            }
+           
+            .company{
+                margin-top: -15px;
+            }
+
+        }
+        .left-info{
+            line-height: 20px;
+        }
+    }
+    .website{
+        color: #004c75 !important;
+        -webkit-link: #004c75 ;
+    }
+   .skill-label{
+    font-weight: 600;
+   }
+    
+    .edit-btn{
+        position: absolute;
+        right: 20px;
+        .edit-icon{
+            cursor: pointer;
+            padding: 10px;
+        }
+        .edit-icon:hover{
+            background-color: rgb(197,197,197);
+            padding: 10px;
+            border-radius: 50%;
+        }
+    }
+    .username{
+        font-family:system-ui;
+        font-weight: 600;
+        font-size: 24px;
+        color:rgba(0,0,0,0.9);
+    }
+    .heading{
+        margin-top: -20px;
+        font-family:system-ui;
+        font-size: 16px;
+        color:rgba(0,0,0,0.9);
+        font-weight: 400;
+        width: 320px;
+        line-height: 20px;
+    }
+}
+.top-outer{
+    display: flex;
+}
+.top-name-heading{
+    width: 50%;
+}
+.top-clg-cmp{
+    width: 50%;
+}

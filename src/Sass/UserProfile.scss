@@ -1,0 +1,23 @@
+.user-profile{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid lightblue;
+    cursor: pointer;
+}
+.user-profile:hover{
+    background-color: lightblue;
+}
+.user-img{
+    width: 45px;
+}
+.user-img >  img{
+    width: 100%;
+    cursor: pointer;
+    border-radius: 100%;
+}
+.user-info{
+    flex: 1;
+    text-align: left;
+    margin-left: 10px;
+}
