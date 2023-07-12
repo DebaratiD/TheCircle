@@ -2,27 +2,26 @@ import React,{useState,useMemo} from 'react'
 import "./index.scss"
 import ProfileEdit from '../ProfileEdit'
 import { editProfileData, getSingleStatus, getSingleUser } from '../../../api/FirestoreAPIs';
-import { HiOutlinePencil } from "react-icons/hi";
 import PostCard from '../PostCard'
-import circleIcon from '../../../pictures/circleIcon.png';
 import { BiPencil } from 'react-icons/bi';
 import { uploadImageAPI } from '../../../api/ImageUpload';
 import { useLocation } from 'react-router-dom';
+import FileUploadModal from '../FileUploadModal';
 
 function ProfileCard({currentUser,onEdit}) {
   let location = useLocation();
   const [AllStatuses,setAllStatus]=useState([]);
   const [currentImage, setCurrentImage] = useState({});
   const [currentProfile, setCurrentProfile] = useState({});
-  const [imageLink, setImageLink] = useState('');
-  let isProfilePic = false;
+  const [modalOpen, setModalOpen] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [uploadInput, setUploadInput] = useState(true);
+ 
   const getImage = (event)=>{
-    //uploadImageAPI(event.target.files[0]);
     setCurrentImage(event.target.files[0]);
   } 
   const uploadImage = ()=>{
-   // console.log(currentUser.userID);
-    uploadImageAPI(currentImage, currentUser.userID);
+    uploadImageAPI(currentImage, currentUser.userID, setModalOpen, setProgress, setCurrentImage, setUploadInput);
   }
   
   useMemo(()=>{
@@ -40,11 +39,21 @@ function ProfileCard({currentUser,onEdit}) {
   // })
 
   return (
+    <>
+    <FileUploadModal 
+    modalOpen={modalOpen} 
+    setModalOpen={setModalOpen}
+    getImage={getImage}
+    uploadImage={uploadImage}
+    currentImage={currentImage}
+    progress={progress}
+    uploadInput={uploadInput}
+    setUploadInput={setUploadInput}/>
     <div className='profile-container'>
     <div className="profile-card">
       <div className='bgPicture'>
         
-        <div className='profilePicture'>
+        <div className='profilePicture' onClick={()=>setModalOpen(true)}>
           <img className='profilePicture-img' src={currentUser?.imageLink} alt="profile-image"/>
         </div>
         <div className="edit-btn">
@@ -54,8 +63,7 @@ function ProfileCard({currentUser,onEdit}) {
         
         <div className="profile-info">
           <div className="left-info">
-            <input type='file' onChange={getImage}/>
-            <button onClick={uploadImage}>Upload</button>
+           
             <h3 className="username">{Object.values(currentProfile).length==0?
             currentUser.name:currentProfile[0]?.name}</h3>
             <p className="heading">
@@ -98,6 +106,7 @@ function ProfileCard({currentUser,onEdit}) {
       })}
     </div>
     </div>
+    </>
   )
 }
 

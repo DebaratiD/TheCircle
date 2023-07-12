@@ -26,6 +26,17 @@ export const getStatus = (setAllStatus)=>{
     })
 
 }
+
+export const getAllUsers = (setAllUsers)=>{
+    onSnapshot(userRef,(response)=>{
+        setAllUsers(
+            response.docs.map((doc)=>{
+                return {...doc.data(),id: doc.id};
+            })
+        );
+    })
+}
+
 export const getSingleUser = (setCurrentUser, email) =>{
     const singleUserQuery = query(userRef, where("email", "==", email))
     onSnapshot(singleUserQuery, (response)=>{
@@ -141,6 +152,28 @@ export const editProfileData=(userID,payload)=>{
             setPostedComment(comment);
         });
 
+    }catch(err){
+        console.log(err);
+    }
+
+   }
+
+   export const updatePost=(id,status)=>{
+    let docToUpdate=doc(postRef,id);
+    try{
+        updateDoc(docToUpdate,{status});
+        toast.success("Profile  has been updated");
+    }catch(err){
+        console.log(err);
+    }
+
+   }
+
+   export const deletePost=(id)=>{
+    let docToDelete=doc(postRef,id);
+    try{
+        deleteDoc(docToDelete);
+        toast.success("Profile  has been deleted successfully");
     }catch(err){
         console.log(err);
     }

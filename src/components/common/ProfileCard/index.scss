@@ -29,8 +29,9 @@
             border: 1px solid lightgrey;
             border-radius: 90px;
             padding: 1px;
-
+            cursor: pointer;
             img{ 
+            object-fit: contain;
             height:var(--heightImg);
             width: var(--widthImg);
             padding:1px;
