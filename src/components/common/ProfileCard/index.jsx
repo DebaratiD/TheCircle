@@ -1,34 +1,69 @@
 import React,{useState,useMemo} from 'react'
 import "./index.scss"
 import ProfileEdit from '../ProfileEdit'
-import { getStatus,getSingleUser,getSingleStatus } from '../../../api/FirestoreAPIs';
-import { HiOutlinePencil } from "react-icons/hi";
+import { editProfileData, getSingleStatus, getSingleUser } from '../../../api/FirestoreAPIs';
 import PostCard from '../PostCard'
-import { useLocation } from 'react-router-dom'; 
-
+import { BiPencil } from 'react-icons/bi';
+import { uploadImageAPI } from '../../../api/ImageUpload';
+import { useLocation } from 'react-router-dom';
+import FileUploadModal from '../FileUploadModal';
 
 function ProfileCard({currentUser,onEdit}) {
-  let location=useLocation();
+  let location = useLocation();
   const [AllStatuses,setAllStatus]=useState([]);
-  const [currentProfile,setCurrentProfile]=useState({});
+  const [currentImage, setCurrentImage] = useState({});
+  const [currentProfile, setCurrentProfile] = useState({});
+  const [modalOpen, setModalOpen] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [uploadInput, setUploadInput] = useState(true);
+ 
+  const getImage = (event)=>{
+    setCurrentImage(event.target.files[0]);
+  } 
+  const uploadImage = ()=>{
+    uploadImageAPI(currentImage, currentUser.userID, setModalOpen, setProgress, setCurrentImage, setUploadInput);
+  }
+  
   useMemo(()=>{
-    //getStatus(setAllStatus);
-    if(location?.state?.id){
-      getSingleStatus(setAllStatus,location?.state?.id);
+    if(location?.state?.is){
+      getSingleStatus(setAllStatus, location?.state?.id);
     }
+
     if(location?.state?.email){
-      getSingleUser(setCurrentProfile,location?.state?.email);
+      getSingleUser(setCurrentProfile, location?.state?.email);
     }
   },[]);
-  
+
+  // useEffect(()=>{
+  //   editProfileData(currentUser?.id, imageLink);
+  // })
+
   return (
+    <>
+    <FileUploadModal 
+    modalOpen={modalOpen} 
+    setModalOpen={setModalOpen}
+    getImage={getImage}
+    uploadImage={uploadImage}
+    currentImage={currentImage}
+    progress={progress}
+    uploadInput={uploadInput}
+    setUploadInput={setUploadInput}/>
     <div className='profile-container'>
     <div className="profile-card">
-        <div className="edit-btn">      
-           <HiOutlinePencil className='edit-icon' onClick={onEdit}/>
+      <div className='bgPicture'>
+        
+        <div className='profilePicture' onClick={()=>setModalOpen(true)}>
+          <img className='profilePicture-img' src={currentUser?.imageLink} alt="profile-image"/>
         </div>
+        <div className="edit-btn">
+            <BiPencil onClick={onEdit} className='edit'/>
+        </div>
+      </div>
+        
         <div className="profile-info">
           <div className="left-info">
+           
             <h3 className="username">{Object.values(currentProfile).length==0?
             currentUser.name:currentProfile[0]?.name}</h3>
             <p className="heading">
@@ -71,6 +106,7 @@ function ProfileCard({currentUser,onEdit}) {
       })}
     </div>
     </div>
+    </>
   )
 }
 

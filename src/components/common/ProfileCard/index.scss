@@ -1,22 +1,51 @@
 .profile-container{
     display: flex;
+    width:  80%;
     flex-direction: column;
 }
 .profile-card{
-    width: 550px;
+    width: 100%;
     height: auto;
     background-color: whitesmoke;
     margin:auto;
-    border-radius: 5px;
-    padding: 20px;
+    border-radius: 20px 20px 0px 0px;
+    //padding: 20px;
     margin-top: 10px;
+    overflow: hidden;
     position: relative;
+    .bgPicture{
+        height: 20vh;
+        background-color: cadetblue;
+        .profilePicture{
+            left: 25px;
+            overflow: hidden;
+            --heightImg:146px;
+            --widthImg:145px;
+            // height:var(--heightImg);
+            // width: var(--widthImg);
+            position: absolute;
+            background-color: white;
+            top: 25px;
+            border: 1px solid lightgrey;
+            border-radius: 90px;
+            padding: 1px;
+            cursor: pointer;
+            img{ 
+            object-fit: contain;
+            height:var(--heightImg);
+            width: var(--widthImg);
+            padding:1px;
+            border-radius: 80px;
+            }
+        }
+    }
     .profile-info{
         display: flex;
+        margin: 50px 25px;
         justify-content: space-between;
         .right-info{
             margin-top: 20px;
-            margin-right:20px;
+            //margin-right:20px;
             .company,
             .college{
                 font-family: system-ui;
@@ -44,18 +73,20 @@
     font-weight: 600;
    }
     
-    .edit-btn{
+    .edit-btn{   
         position: absolute;
         right: 20px;
-        .edit-icon{
-            cursor: pointer;
-            padding: 10px;
-        }
-        .edit-icon:hover{
-            background-color: rgb(197,197,197);
-            padding: 10px;
-            border-radius: 50%;
-        }
+        top: 25px;
+        background: white;
+        padding: 0px 5px;
+        color: darkblue;
+        border-radius: 50px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      .edit{
+         cursor: pointer;
+
+      }
+      
     }
     .username{
         font-family:system-ui;

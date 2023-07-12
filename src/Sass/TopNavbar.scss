@@ -64,12 +64,7 @@ $linkedin: #0661bc;
     display: block;
     animation: slide-in 0.4s ease-in-out;
     overflow:hidden;
-    display: flex;
-    z-index: 99;
-    flex-direction: column;
-    
-    
-    
+    display: block;
 }
 .user-div:hover{
     background-color: #dcdbdb;

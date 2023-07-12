@@ -44,8 +44,10 @@ const updateProfileData= async()=>{
         </div>
         <div className='savebtn-container'>
           <button className='save-btn' onClick={updateProfileData}>Save</button>
+          <button className='exit-btn' onClick={onEdit}>Go back</button>
         </div>
-    </div>
+      </div>
+       
   )
 }
 

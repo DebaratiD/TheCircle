@@ -26,6 +26,39 @@ export const getStatus = (setAllStatus)=>{
     })
 
 }
+
+export const getAllUsers = (setAllUsers)=>{
+    onSnapshot(userRef,(response)=>{
+        setAllUsers(
+            response.docs.map((doc)=>{
+                return {...doc.data(),id: doc.id};
+            })
+        );
+    })
+}
+
+export const getSingleUser = (setCurrentUser, email) =>{
+    const singleUserQuery = query(userRef, where("email", "==", email))
+    onSnapshot(singleUserQuery, (response)=>{
+        setCurrentUser(
+            response.docs.map((docs)=>{
+                return {... docs.data(), id:docs.id};
+            })[0]
+        )
+    })
+}
+
+export const getSingleStatus = (setAllStatus, id) =>{
+    const singlePostQuery = query(postsRef, where("userID", "==", id))
+    onSnapshot(singlePostQuery, (response)=>{
+        setAllStatus(
+            response.docs.map((docs)=>{
+                return  {...docs.data(), id:docs.id};
+            })
+        )
+    })
+}
+
 export const postUserData = (object) => {
     addDoc(userRef, object)
     .then(()=>{})
@@ -47,38 +80,17 @@ export const getCurrentUser = (setCurrentUser) => {
 }
 
 export const editProfileData=(userID,payload)=>{
+    console.log(userID, payload)
     let userToEdit=doc(userRef,userID);
+     
     updateDoc(userToEdit,payload).then(
-        (res)=>{toast.success('Profile has been added sucessfully')}
+        (res)=>{toast.success('Profile updated sucessfully')}
     ).catch((err)=>{
         console.log(err);
     })
     }
 
-    export const getSingleStatus = (setAllStatus,id) => {
-        const singlePostQuery = query(postRef,where("userID","==",id));
-        //console.log("FirestoreAPI "+userEmail);
-        onSnapshot(singlePostQuery,(response)=> {
-            setAllStatus(
-                    response.docs.map((doc)=>{
-                        return {...doc.data(), id:doc.id};
-                    })
-                    
-                );
-        });
-    }
-    export const getSingleUser = (setCurrentUser,email) => {
-        const singleUserQuery = query(userRef,where("email","==",email));
-        //console.log("FirestoreAPI "+userEmail);
-        onSnapshot(singleUserQuery,(response)=> {
-            setCurrentUser(
-                    response.docs.map((doc)=>{
-                        return {...doc.data(), id:doc.id};
-                    })
-                    
-                );
-        });
-    }
+
    export const likePost=(userID,postID,liked)=>{
     try{
         let docToLike=doc(likeRef,`${userID}_${postID}`);
