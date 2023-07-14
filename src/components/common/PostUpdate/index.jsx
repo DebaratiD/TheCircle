@@ -13,15 +13,16 @@ function PostStatus({currentUser}) {
   const [AllStatuses,setAllStatus]=useState([]);
   const [currentPost, setCurrentPost] = useState({});
   const [isEdit, setIsEdit] = useState(false);
- 
+
   const sendStatus= async()=>{
+  
     let object={
       status:status,
       timeStamp: getCurrentTimeStamp("LLL"),
       userEmail: userEmail.email,
       userName: currentUser.name,
       postID: getUniqueId(),
-      userID:JSON.parse(localStorage.getItem("user"))?.userID
+      userID:currentUser.userID
     }
     
     await postStatus(object);
