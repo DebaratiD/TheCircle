@@ -15,7 +15,7 @@ function ProfilePopup() {
     ,[]);
 
   const profilePage=()=>{
-    navigate("/profile",{state:{id:loggedInUser?.userID}})
+    navigate("/profile",{state:{id:currentUser?.userID,email:currentUser?.email}})
     window.location.reload();
   }
   const loggedInUser= JSON.parse(localStorage.getItem('user'));

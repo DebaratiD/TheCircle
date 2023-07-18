@@ -15,7 +15,6 @@ function PostStatus({currentUser}) {
   const [isEdit, setIsEdit] = useState(false);
 
   const sendStatus= async()=>{
-  
     let object={
       status:status,
       timeStamp: getCurrentTimeStamp("LLL"),
@@ -24,7 +23,7 @@ function PostStatus({currentUser}) {
       postID: getUniqueId(),
       userID:currentUser.userID
     }
-    
+   
     await postStatus(object);
     await setModalOpen(false);
     await setStatus("");

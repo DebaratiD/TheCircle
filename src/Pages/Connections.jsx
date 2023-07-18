@@ -4,10 +4,10 @@ import { auth } from '../firebaseConfig'
 
 import { useNavigate } from 'react-router-dom';
 import Loader from '../components/common/loader';
-import HomeLayoutComponent from '../components/Layouts/HomeLayoutComponent';
+import ConnectionLayout from '../components/Layouts/ConnectionLayout';
 
 
-export default function HomeLayout() {
+export default function Connections() {
   const [loading, setLoading] = useState(true);
   
  
@@ -22,15 +22,15 @@ export default function HomeLayout() {
         const user = {
           email: res?.email,
           photoURL: res?.photoURL,
-          
+          userID: res?.uid
         }
         
         localStorage.setItem("user",JSON.stringify(user));
-        navigate('/home');
+        navigate('/connections');
         setLoading(false);
       }
     })
   }, []);
-  return loading? <Loader /> : <HomeLayoutComponent/>;
+  return loading? <Loader /> : <ConnectionLayout/>;
 
 }

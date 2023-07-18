@@ -4,6 +4,7 @@ import ProfileEdit from '../ProfileEdit'
 import { editProfileData, getSingleStatus, getSingleUser } from '../../../api/FirestoreAPIs';
 import PostCard from '../PostCard'
 import { BiPencil } from 'react-icons/bi';
+import { HiOutlinePencil} from 'react-icons/hi';
 import { uploadImageAPI } from '../../../api/ImageUpload';
 import { useLocation } from 'react-router-dom';
 import FileUploadModal from '../FileUploadModal';
@@ -23,23 +24,26 @@ function ProfileCard({currentUser,onEdit}) {
   const uploadImage = ()=>{
     uploadImageAPI(currentImage, currentUser.userID, setModalOpen, setProgress, setCurrentImage, setUploadInput);
   }
-  
+  const [edit,setEdit]=useState(true);
+
   useMemo(()=>{
-    if(location?.state?.is){
+    if(location?.state?.id){
       getSingleStatus(setAllStatus, location?.state?.id);
     }
 
     if(location?.state?.email){
-      getSingleUser(setCurrentProfile, location?.state?.email);
+      getSingleUser(setCurrentProfile,location?.state?.email);
+      
     }
+   
   },[]);
 
-  // useEffect(()=>{
-  //   editProfileData(currentUser?.id, imageLink);
-  // })
+  console.log(AllStatuses);
+  console.log(location?.state);
+
 
   return (
-    <>
+  <>
     <FileUploadModal 
     modalOpen={modalOpen} 
     setModalOpen={setModalOpen}
@@ -49,19 +53,19 @@ function ProfileCard({currentUser,onEdit}) {
     progress={progress}
     uploadInput={uploadInput}
     setUploadInput={setUploadInput}/>
+
     <div className='profile-container'>
-    <div className="profile-card">
-      <div className='bgPicture'>
+      <div className="profile-card">
+          <div className='bgPicture'>       
+                  <div className='profilePicture' onClick={()=>setModalOpen(true)}>
+                    <img className='profilePicture-img' src={currentUser?.imageLink} alt="profile-image"/>
+                  </div>
+                  <div className="edit-btn">      
+                      <HiOutlinePencil className='edit-icon' onClick={onEdit}/>
+                  </div>           
+          </div>
         
-        <div className='profilePicture' onClick={()=>setModalOpen(true)}>
-          <img className='profilePicture-img' src={currentUser?.imageLink} alt="profile-image"/>
-        </div>
-        <div className="edit-btn">
-            <BiPencil onClick={onEdit} className='edit'/>
-        </div>
-      </div>
-        
-        <div className="profile-info">
+         <div className="profile-info">
           <div className="left-info">
            
             <h3 className="username">{Object.values(currentProfile).length==0?
@@ -88,25 +92,27 @@ function ProfileCard({currentUser,onEdit}) {
             currentUser.company:currentProfile[0]?.company}</p>
           </div>
          
-        </div>    
-        <p className="about-me">
+         </div>    
+          <p className="about-me">
             {Object.values(currentProfile).length==0?
-            currentUser.aboutMe:currentProfile[0]?.aboutMe}</p>
-         <p className="skills">
-          <span className="skill-label">Skills</span>:&nbsp;
+            currentUser.aboutMe:currentProfile[0]?.aboutMe}
+          </p>
+          <p className="skills">
+            <span className="skill-label">Skills</span>:&nbsp;
             {Object.values(currentProfile).length==0?
-            currentUser.skills:currentProfile[0]?.skills}</p>
-    </div>
-    <div>
-      {AllStatuses.map((posts)=>{
-        return (<div key={posts.id}>
-          <PostCard posts={posts}/>
+            currentUser.skills:currentProfile[0]?.skills}
+          </p>
+         </div>
+         <div className='self-post'>
+          {AllStatuses.map((posts)=>{
+           return (<div key={posts.id}>
+            <PostCard posts={posts}/>
           </div>)
 
-      })}
-    </div>
-    </div>
-    </>
+          })}
+         </div>
+      </div>
+  </>
   )
 }
 

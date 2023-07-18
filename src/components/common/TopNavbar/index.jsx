@@ -14,6 +14,7 @@ export default function TopNavbar() {
     let navigate=useNavigate();
     const goToRoute=(route)=>{
       navigate(route);
+      
     }
 
     let [showUserInfo, setShowUserInfo] = useState(false);
@@ -31,7 +32,7 @@ export default function TopNavbar() {
             <AiOutlineSearch size={30} className='react-icon'/>
             <input type="text" name="search" placeholder='Search...'  className='search-bar'/> 
             <AiTwotoneHome  size={30} className='react-icon' onClick={()=>{goToRoute('/home')}}/>
-            <HiUsers  size={30} className='react-icon'/>
+            <HiUsers  size={30} className='react-icon' onClick={()=>{goToRoute('/connections')}}/>
             <HiBriefcase size={30} className='react-icon'/>
             <BsFillChatDotsFill  size={30} className='react-icon' onClick={()=>{goToRoute('/chat')}}/>
         </div>

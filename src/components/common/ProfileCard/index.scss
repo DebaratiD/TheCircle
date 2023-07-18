@@ -1,10 +1,11 @@
 .profile-container{
     display: flex;
-    width:  80%;
+    width:  50%;
     flex-direction: column;
 }
+
 .profile-card{
-    width: 100%;
+    width: 50%;
     height: auto;
     background-color: whitesmoke;
     margin:auto;
@@ -70,9 +71,13 @@
         -webkit-link: #004c75 ;
     }
    .skill-label{
+    margin-left: 25px;
     font-weight: 600;
    }
-    
+    .about-me{
+        margin-left: 25px;
+
+    }
     .edit-btn{   
         position: absolute;
         right: 20px;

@@ -43,13 +43,13 @@ export const getSingleUser = (setCurrentUser, email) =>{
         setCurrentUser(
             response.docs.map((docs)=>{
                 return {... docs.data(), id:docs.id};
-            })[0]
+            })
         )
     })
 }
 
 export const getSingleStatus = (setAllStatus, id) =>{
-    const singlePostQuery = query(postsRef, where("userID", "==", id))
+    const singlePostQuery = query(postRef, where("userID", "==", id))
     onSnapshot(singlePostQuery, (response)=>{
         setAllStatus(
             response.docs.map((docs)=>{
@@ -90,14 +90,15 @@ export const editProfileData=(userID,payload)=>{
     })
     }
 
-
    export const likePost=(userID,postID,liked)=>{
     try{
         let docToLike=doc(likeRef,`${userID}_${postID}`);
         if(liked){
             deleteDoc(docToLike);
+            console.log("del like")
         }else{
             setDoc(docToLike,{userID,postID});
+            console.log(" like")
         }
         
     }catch(err){

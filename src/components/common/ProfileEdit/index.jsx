@@ -4,11 +4,13 @@ import {editProfileData} from "../../../api/FirestoreAPIs"
 import { AiOutlineClose } from "react-icons/ai";
 function ProfileEdit({onEdit,currentUser}) {
 const [profileInput,setProfileInput]=useState(currentUser);
+
 const getInput=(event)=>{
 let {name,value}=event.target;
 let input={[name]:value};
 setProfileInput({...profileInput,...input});
 };
+
 const updateProfileData= async()=>{
   await editProfileData(currentUser?.userID,profileInput);
   await onEdit();
@@ -17,7 +19,7 @@ const updateProfileData= async()=>{
   return (
     <div className='profile-card'>
         <div className="edit-btn">
-          <AiOutlineClose className='close-icon' onClick={onEdit} size={25}/>
+          <AiOutlineClose className='close-icon' onClick={onEdit} size={20}/>
         
         </div>
         <div className='profile-edit-inputs'>
