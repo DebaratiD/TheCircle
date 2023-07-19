@@ -7,6 +7,7 @@ let postRef = collection(firestore,"posts");
 let userRef = collection(firestore,"users");
 let likeRef= collection(firestore,"likes");
 let commentRef=collection(firestore,"comments");
+let connectionRef=collection(firestore,"connections");
 
 export const postStatus=(object)=>{
 
@@ -180,3 +181,33 @@ export const editProfileData=(userID,payload)=>{
     }
 
    }
+
+   export const addConnection=(userID,targetID)=>{
+    try{
+        let connectionToAdd=doc(connectionRef,`${userID}_${targetID}`);
+      
+        setDoc(connectionToAdd,{userID,targetID});
+        toast.success("Connection Added");
+
+    }catch(err){
+        console.log(err);
+    };
+   
+   };
+
+   export const getConnections=(userID,targetID,setConnected)=>{
+    try{
+     let connectionQuery=query(connectionRef,where('targetID','==',targetID));
+     onSnapshot(connectionQuery,(response)=>{
+        let connections=response.docs.map((doc)=> doc.data());
+        
+        const isConnection=connections.some((connection)=>connection.userID==userID );
+      
+        setConnected(isConnection);
+     })
+     
+    }catch(err){
+       console.log(err);
+    }
+ 
+    }
