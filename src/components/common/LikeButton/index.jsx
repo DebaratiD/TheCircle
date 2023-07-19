@@ -17,8 +17,7 @@ function LikeButton({userID,postID}) {
     const handleLike=()=>{
          
          setLiked(!liked);
-         console.log(liked);
-         console.log(userID);
+         
         likePost(userID,postID,liked);
         
     };

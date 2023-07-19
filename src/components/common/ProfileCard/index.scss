@@ -15,30 +15,32 @@
     overflow: hidden;
     position: relative;
     .bgPicture{
-        height: 20vh;
+        height: 25vh;
         background-color: cadetblue;
         .profilePicture{
             left: 25px;
             overflow: hidden;
-            --heightImg:146px;
+            --heightImg:145px;
             --widthImg:145px;
-            // height:var(--heightImg);
-            // width: var(--widthImg);
+            
             position: absolute;
             background-color: white;
             top: 25px;
             border: 1px solid lightgrey;
-            border-radius: 90px;
-            padding: 1px;
+            border-radius: 100%;
+          
             cursor: pointer;
-            img{ 
-            object-fit: contain;
+            
+          
+          
+        }
+        .profilePicture >img{
+            object-fit: cover;
             height:var(--heightImg);
             width: var(--widthImg);
-            padding:1px;
-            border-radius: 80px;
+            border-radius: 100%;
+           
             }
-        }
     }
     .profile-info{
         display: flex;
@@ -87,7 +89,8 @@
         color: darkblue;
         border-radius: 50px;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-      .edit{
+        align-items: center;
+      .edit-icon{
          cursor: pointer;
 
       }

@@ -22,7 +22,8 @@ function ProfileCard({currentUser,onEdit}) {
     setCurrentImage(event.target.files[0]);
   } 
   const uploadImage = ()=>{
-    uploadImageAPI(currentImage, currentUser.userID, setModalOpen, setProgress, setCurrentImage, setUploadInput);
+    let userId=Object.values(currentProfile).length==0?currentUser.userID:currentProfile[0]?.userID
+    uploadImageAPI(currentImage, userId, setModalOpen, setProgress, setCurrentImage, setUploadInput);
   }
   const [edit,setEdit]=useState(true);
 
@@ -38,8 +39,7 @@ function ProfileCard({currentUser,onEdit}) {
    
   },[]);
 
-  console.log(AllStatuses);
-  console.log(location?.state);
+ 
 
 
   return (
@@ -58,10 +58,10 @@ function ProfileCard({currentUser,onEdit}) {
       <div className="profile-card">
           <div className='bgPicture'>       
                   <div className='profilePicture' onClick={()=>setModalOpen(true)}>
-                    <img className='profilePicture-img' src={currentUser?.imageLink} alt="profile-image"/>
+                    <img className='profilePicture-img' src={Object.values(currentProfile).length==0?currentUser.imageLink:currentProfile[0]?.imageLink} alt="profile-image"/>
                   </div>
                   <div className="edit-btn">      
-                      <HiOutlinePencil className='edit-icon' onClick={onEdit}/>
+                      <HiOutlinePencil size={20} className='edit-icon' onClick={onEdit}/>
                   </div>           
           </div>
         

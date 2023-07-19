@@ -5,11 +5,47 @@ $linkedin: #0661bc;
     margin: 5px;
     
 }
+.search-icon{
+    width: 290px
+}
+.search-results{
+    position: absolute;
+    left:205px;
+    top:50px;
+    width:240px;
+    height: auto;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #bbbbbb;
+    overflow-y: scroll;
+    .search-inner{
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        padding: 10px;
+        border-radius: 10px;
+        img{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+    
+        }
+        .name{
+            font-family: system-ui;
+            font-size: 16px;
+    
+        }
+    }
+    .search-inner:hover{
+        background-color: #bbbbbb;
+    }
 
+}
 .react-icons{
     display: flex;    
     align-items: center;
-    padding: 10px;
+    padding: 8px;
     justify-content: space-between;
     margin-left: 10px;
     
