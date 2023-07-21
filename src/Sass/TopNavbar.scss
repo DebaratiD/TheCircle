@@ -128,8 +128,10 @@ $linkedin: #0661bc;
     0%{height:0px;}
 }
 .sidebar-header-img{
-    width: 40px;
-    
+    width: 48px;
+    overflow: hidden;
+    height: 50px;
+    border-radius: 50%;;
 }
 .profile-menu{
         top: 70px;  
@@ -141,10 +143,10 @@ $linkedin: #0661bc;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
       
 }
-.sidebar-header-img > img{
+.userLogo{
     width: 100%;
+    object-fit: cover;
     cursor: pointer;
-    border-radius: 100%;
 }
 .search-bar{
     border-radius: 5px;

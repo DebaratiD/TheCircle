@@ -160,10 +160,10 @@ export const editProfileData=(userID,payload)=>{
 
    }
 
-   export const updatePost=(id,status)=>{
+   export const updatePost=(id,status, postImage)=>{
     let docToUpdate=doc(postRef,id);
     try{
-        updateDoc(docToUpdate,{status});
+        updateDoc(docToUpdate,{status, postImage});
         toast.success("Profile  has been updated");
     }catch(err){
         console.log(err);

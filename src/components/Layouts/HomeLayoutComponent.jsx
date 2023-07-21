@@ -12,7 +12,7 @@ export default function HomeLayoutComponent() {
   ,[]);
   return (
     <>
-        <TopNavbar/>
+        <TopNavbar currentUser={currentUser}/>
         <HomeComponent currentUser={currentUser}/>
     </>
     
