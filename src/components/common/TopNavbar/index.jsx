@@ -12,7 +12,7 @@ import SearchUser from '../SearchUser/index'
 import {getAllUsers} from "../../../api/FirestoreAPIs"
 import { FilterNoneRounded } from '@mui/icons-material';
 
-export default function TopNavbar() {
+export default function TopNavbar({currentUser}) {
   const [user,setUser]=useState(JSON.parse(localStorage.getItem("user")));
   const [isSearch,setIsSearch]=useState(false);
   const [searchInput,setsearchInput]=useState("");
@@ -37,8 +37,6 @@ export default function TopNavbar() {
     const UserIcon=user?.photoURL!=null?(user?.photoURL):userIcon;
     const handleSearch = ()=>{
       if(searchInput !== ''){
-        console.log("ankit")
-        console.log(filteredUsers)
       let searched= users.filter((user)=>{
         return Object.values(user).join("").toLowerCase().includes(searchInput.toLowerCase())
       });
@@ -91,7 +89,7 @@ export default function TopNavbar() {
             <BsFillBellFill size={30} className='react-icon'/>
            
             <div className="sidebar-header-img">
-              <img src={UserIcon} alt="" onClick={toggle}/>
+              <img className='userLogo' src={currentUser?.imageLink} alt="user" onClick={toggle}/>
               </div>
             {/* {showUserInfo && <UserInfoComponent/>} */}
             <div className='profile-menu'>

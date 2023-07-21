@@ -3,6 +3,7 @@ import { postStatus, getStatus,updatePost } from '../../../api/FirestoreAPIs';
 import "./index.scss";
 import ModalComponent from "../Modal";
 import PostCard from '../PostCard';
+import { uploadPostImageAPI } from '../../../api/ImageUpload';
 import { getCurrentTimeStamp } from '../../../helpers/useMoment';
 import { getUniqueId } from '../../../helpers/getUniqueId';
 
@@ -13,6 +14,7 @@ function PostStatus({currentUser}) {
   const [AllStatuses,setAllStatus]=useState([]);
   const [currentPost, setCurrentPost] = useState({});
   const [isEdit, setIsEdit] = useState(false);
+  const [postImage, setPostImage] = useState('');
 
   const sendStatus= async()=>{
     let object={
@@ -23,15 +25,16 @@ function PostStatus({currentUser}) {
       postID: getUniqueId(),
       userID:currentUser.userID
     }
-   
+    if(postImage.length>0){
+      object['postImage'] = postImage;
+    }
     await postStatus(object);
     await setModalOpen(false);
     await setStatus("");
     
   };
   const updateStatus=()=>{
-    console.log(status);
-    updatePost(currentPost.id,status);
+    updatePost(currentPost.id,status, postImage);
     setModalOpen(false);
 
   }
@@ -55,7 +58,19 @@ function PostStatus({currentUser}) {
      
     </div>
     
-    <ModalComponent setStatus={setStatus} modalOpen={modalOpen} sendStatus={sendStatus} setModalOpen={setModalOpen} status={status} isEdit={isEdit} updateStatus={updateStatus}/>
+    <ModalComponent 
+    setStatus={setStatus} 
+    modalOpen={modalOpen} 
+    sendStatus={sendStatus} 
+    setModalOpen={setModalOpen} 
+    status={status} 
+    isEdit={isEdit} 
+    updateStatus={updateStatus}
+    postImage={postImage}
+    setPostImage={setPostImage}
+    uploadPostImage={uploadPostImageAPI}
+    setCurrentPost={setCurrentPost}
+    currentPost = {currentPost}/>
     <div>
       {AllStatuses.map((posts)=>{
         return <PostCard posts={posts} id={posts.userID} getEditData={getEditData}/>

@@ -48,7 +48,7 @@ function PostCard({posts,id,getEditData}) {
         <LikeButton userID={currentUser.userID} postID={posts.postID}/>
     </div>
     ):(
-    isConnected?(
+    isConnected || currentUser.id===posts.userID?(
     <div className='post-card' key={id} >
       <div className="post-image-wrapper">
       <div className='post-header'>
@@ -60,6 +60,7 @@ function PostCard({posts,id,getEditData}) {
               <p className='timestamp'>{posts.timeStamp}</p>
           </div>
       </div>
+      {posts.postImage? <img src={posts.postImage} alt="post-image"/>:<></>}
         { currentUser.userID==posts.userID?
         (<div className="action-container">
           <BsPencil size={20} className='action-icon' onClick={()=>getEditData(posts)}/>

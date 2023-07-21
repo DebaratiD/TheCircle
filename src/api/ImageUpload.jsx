@@ -21,3 +21,20 @@ export const  uploadImageAPI = (file, id, setModalOpen, setProgress, setCurrentI
         }) 
     })
 }
+
+export const  uploadPostImageAPI = (file, setPostImage) => {
+    const postPicsRef = ref(storage, `postImages/${file.name}`);
+    const uploadTask = uploadBytesResumable(postPicsRef, file);
+
+    uploadTask.on("state_changed", (snapshot) =>{
+        const progress = Math.round(100*(snapshot.bytesTransferred / snapshot.totalBytes));
+        console.log(progress);
+    },(error)=>{
+        console.log(error);
+    },()=>{
+        getDownloadURL(uploadTask.snapshot.ref)
+        .then((response)=>{
+            setPostImage(response);
+        }) 
+    })
+}
