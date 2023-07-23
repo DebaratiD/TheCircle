@@ -12,7 +12,7 @@ function ConnectionLayout() {
   ,[]);
   return (
     <>
-        <TopNavbar/>
+        <TopNavbar currentUser={currentUser}/>
         <ConnectionsComponent currentUser={currentUser}/>
     </>
     

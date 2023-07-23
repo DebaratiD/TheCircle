@@ -7,6 +7,7 @@ import { deletePost, getAllUsers, getCurrentUser,getConnections } from '../../..
 import { useLocation } from 'react-router-dom';
 
 
+
 function PostCard({posts,id,getEditData}) {
   let location = useLocation();
   let navigate=useNavigate();
@@ -45,10 +46,12 @@ function PostCard({posts,id,getEditData}) {
         </div>):(<></>)}
       </div>
        <p className='status'>{posts.status}</p>
+       {posts.postImage? <img className='post-image' src={posts.postImage} alt="post-image"/>:<></>}
+
         <LikeButton userID={currentUser.userID} postID={posts.postID}/>
     </div>
     ):(
-    isConnected || currentUser.id===posts.userID?(
+    isConnected || currentUser.userID===posts.userID?(
     <div className='post-card' key={id} >
       <div className="post-image-wrapper">
       <div className='post-header'>
@@ -60,7 +63,6 @@ function PostCard({posts,id,getEditData}) {
               <p className='timestamp'>{posts.timeStamp}</p>
           </div>
       </div>
-      {posts.postImage? <img src={posts.postImage} alt="post-image"/>:<></>}
         { currentUser.userID==posts.userID?
         (<div className="action-container">
           <BsPencil size={20} className='action-icon' onClick={()=>getEditData(posts)}/>
@@ -68,6 +70,8 @@ function PostCard({posts,id,getEditData}) {
         </div>):(<></>)}
       </div>
        <p className='status'>{posts.status}</p>
+       {posts.postImage? <img className='post-image' src={posts.postImage} alt="post-image"/>:<></>}
+
         <LikeButton userID={currentUser.userID} postID={posts.postID}/>
     </div>
     ):(<></>))

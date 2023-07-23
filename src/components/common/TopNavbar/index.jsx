@@ -17,6 +17,7 @@ export default function TopNavbar({currentUser}) {
   const [isSearch,setIsSearch]=useState(false);
   const [searchInput,setsearchInput]=useState("");
   const [filteredUsers,setFilteredUsers]=useState([]);
+  
 
     let navigate=useNavigate();
     const goToRoute=(route)=>{
@@ -34,7 +35,8 @@ export default function TopNavbar({currentUser}) {
 
     let [showUserInfo, setShowUserInfo] = useState(false); 
     let divelem = document.getElementById('user-div');
-    const UserIcon=user?.photoURL!=null?(user?.photoURL):userIcon;
+    const UserIcon=currentUser?.imageLink!=null?(currentUser?.imageLink):userIcon;
+    
     const handleSearch = ()=>{
       if(searchInput !== ''){
       let searched= users.filter((user)=>{
@@ -89,7 +91,7 @@ export default function TopNavbar({currentUser}) {
             <BsFillBellFill size={30} className='react-icon'/>
            
             <div className="sidebar-header-img">
-              <img className='userLogo' src={currentUser?.imageLink} alt="user" onClick={toggle}/>
+              <img className='userLogo' src={UserIcon} alt="user" onClick={toggle}/>
               </div>
             {/* {showUserInfo && <UserInfoComponent/>} */}
             <div className='profile-menu'>

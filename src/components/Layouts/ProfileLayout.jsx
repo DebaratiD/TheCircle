@@ -12,7 +12,7 @@ export default function ProfileLayout() {
   ,[]);
   return (
     <>
-        <TopNavbar/>
+        <TopNavbar currentUser={currentUser}/>
         <ProfileComponent currentUser={currentUser}/>
     </>
     

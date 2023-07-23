@@ -43,6 +43,7 @@ function PostStatus({currentUser}) {
    setStatus(posts?.status);
    setCurrentPost(posts);
    setIsEdit(true);
+  
   }
   useMemo(()=>{
     getStatus(setAllStatus);

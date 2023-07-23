@@ -62,6 +62,14 @@ $linkedin: #0661bc;
     padding: 10px;
     margin-right: 10px;
     justify-content: space-between;
+    .userLogo{
+        object-fit: cover;
+        overflow: hidden;
+        height: 40px;
+        width: 40px;
+        border-radius: 100%;
+        margin-top: 5px;
+    }
 
 }
 
@@ -127,12 +135,7 @@ $linkedin: #0661bc;
     50%{height:4%;}
     0%{height:0px;}
 }
-.sidebar-header-img{
-    width: 48px;
-    overflow: hidden;
-    height: 50px;
-    border-radius: 50%;;
-}
+
 .profile-menu{
         top: 70px;  
         position: absolute;
@@ -143,11 +146,7 @@ $linkedin: #0661bc;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
       
 }
-.userLogo{
-    width: 100%;
-    object-fit: cover;
-    cursor: pointer;
-}
+
 .search-bar{
     border-radius: 5px;
     background-color: white;
