@@ -22,10 +22,11 @@
             overflow: hidden;
             --heightImg:145px;
             --widthImg:145px;
-            
+            height: var(--heightImg);
+            width: var(--widthImg);
             position: absolute;
             background-color: white;
-            top: 25px;
+            top: 100px;
             border: 1px solid lightgrey;
             border-radius: 100%;
           

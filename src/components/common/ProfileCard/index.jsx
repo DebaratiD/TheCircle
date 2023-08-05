@@ -39,8 +39,6 @@ function ProfileCard({currentUser,onEdit}) {
    
   },[]);
 
- 
-
 
   return (
   <>
@@ -68,39 +66,44 @@ function ProfileCard({currentUser,onEdit}) {
          <div className="profile-info">
           <div className="left-info">
            
-            <h3 className="username">{Object.values(currentProfile).length==0?
-            currentUser.name:currentProfile[0]?.name}</h3>
+            {<h3 className="username">{
+            currentUser.name || currentProfile[0]?.name?Object.values(currentProfile).length==0?
+            currentUser.name:currentProfile[0]?.name:"Your Name"}</h3>}
             <p className="heading">
-            {Object.values(currentProfile).length==0?
-            currentUser.headline:currentProfile[0]?.headline}
+            {currentUser.headline || currentProfile[0]?.headline?Object.values(currentProfile).length==0?
+            currentUser.headline:currentProfile[0]?.headline:"Provide a headline"}
             </p>
-            <p className="location">{Object.values(currentProfile).length==0?
-            `${currentUser.city},${currentUser.country}`:`${currentProfile[0]?.city},${currentProfile[0]?.country}`}
+            <p className="location">{
+            currentUser.city || currentProfile[0]?.city || currentUser.country || currentProfile[0]?.country?
+            Object.values(currentProfile).length==0?
+            `${currentUser.city}, ${currentUser.country}`:`${currentProfile[0]?.city}, ${currentProfile[0]?.country}`:"Your city, country"}
             </p>
-            <a className="website" target="_blank" href=
-            {Object.values(currentProfile).length==0?
+            {(currentUser.website || currentProfile[0]?.website) && <a className="website" target="_blank" 
+            href={Object.values(currentProfile).length==0?
             `${currentUser.website}`:currentProfile[0]?.website}>
-              {Object.values(currentProfile).length==0?
-            `${currentUser.website}`:currentProfile[0]?.website}
-            </a>
+              {currentUser.website || currentProfile[0]?.website?Object.values(currentProfile).length==0?
+            `${currentUser.website}`:currentProfile[0]?.website:"Link to your website"}
+            </a>}
           </div>
           <div className="right-info">
             <p className="college">
-            {Object.values(currentProfile).length==0?
-            currentUser.college:currentProfile[0]?.college}</p>
-            <p className="company">{Object.values(currentProfile).length==0?
-            currentUser.company:currentProfile[0]?.company}</p>
+            {currentUser.college || currentProfile[0]?.college?Object.values(currentProfile).length==0?
+            currentUser.college:currentProfile[0]?.college:"College Name"}</p>
+            <p className="company">{currentUser.company || currentProfile[0]?.company?
+            Object.values(currentProfile).length==0?
+            currentUser.company:currentProfile[0]?.company:"Company you work(ed) at"}</p>
           </div>
          
          </div>    
           <p className="about-me">
-            {Object.values(currentProfile).length==0?
-            currentUser.aboutMe:currentProfile[0]?.aboutMe}
+            {currentUser.aboutMe || currentProfile[0]?.aboutMe?
+            Object.values(currentProfile).length==0?
+            currentUser.aboutMe:currentProfile[0]?.aboutMe:"Tell people more about you"}
           </p>
           <p className="skills">
             <span className="skill-label">Skills</span>:&nbsp;
-            {Object.values(currentProfile).length==0?
-            currentUser.skills:currentProfile[0]?.skills}
+            {currentUser.skills || currentProfile[0]?.skills?Object.values(currentProfile).length==0?
+            currentUser.skills:currentProfile[0]?.skills:"Share your skills"}
           </p>
          </div>
          <div className='self-post'>
