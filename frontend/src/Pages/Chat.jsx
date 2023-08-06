@@ -1,24 +1,24 @@
-import { React, useEffect, useState } from 'react'
+import { React, useEffect, useState,useMemo } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../firebaseConfig'
 import { useNavigate } from 'react-router-dom'
-import Loader from '../components/common/loader'
-import RegisterComponent from '../components/RegisterComponent'
+import Loader from '../components/common/Loader'
+import ChatLayout from "../components/Layouts/ChatLayout"
 
-export default function Register() {
+export default function Chat() {
   const [loading, setLoading] = useState(true);
   let navigate = useNavigate();
   useEffect(()=>{
     onAuthStateChanged(auth, (res)=>{
+      
       if(!res?.accessToken){
-        navigate('/register');
+        navigate('/');
       }
       else{
-        navigate('/home');
         setLoading(false);
       }
     })
   }, []);
-  return !loading? <Loader /> : <RegisterComponent />;
+  return loading? <Loader /> : <ChatLayout/>;
   
 }

@@ -1,0 +1,10 @@
+version: '1.4'
+services:
+  client:
+    image: baseapp:1.4
+    build: ./frontend
+    container_name: circle_1
+    ports:
+      - '5000:5000'
+    stdin_open: true
+    tty: true

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {getAllUsers,addConnection,getConnections} from '../../../api/FirestoreAPIs'
 import "./index.scss"
-import ConnectedUser from "../../common/Connections/ConnectedUser/index"
+import ConnectedUser from "./ConnectedUser/index"
 
 function ConnectionsComponent({currentUser}) {
   const [users,setUsers] = useState([]);
