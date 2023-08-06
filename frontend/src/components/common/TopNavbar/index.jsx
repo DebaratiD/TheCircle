@@ -3,7 +3,7 @@ import LinkedInMini from '../../../pictures/circleIcon.png'
 import { AiOutlineSearch, AiTwotoneHome } from 'react-icons/ai';
 import { HiUsers,HiBriefcase } from 'react-icons/hi'
 import  { BsFillChatDotsFill, BsFillGrid3X3GapFill, BsFillPersonFill, BsFillBellFill } from 'react-icons/bs'
-import UserInfoComponent from '../../../components/UserInfoComponent';
+import UserInfoComponent from '../../UserInfoComponent';
 import '../../../Sass/TopNavbar.scss';
 import { useNavigate } from 'react-router-dom';
 import userIcon from '../../../pictures/user.jpg'

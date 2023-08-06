@@ -3,11 +3,11 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../firebaseConfig'
 
 import { useNavigate } from 'react-router-dom';
-import Loader from '../components/common/loader';
-import ConnectionLayout from '../components/Layouts/ConnectionLayout';
+import Loader from '../components/common/Loader';
+import HomeLayoutComponent from '../components/Layouts/HomeLayoutComponent';
 
 
-export default function Connections() {
+export default function HomeLayout() {
   const [loading, setLoading] = useState(true);
   
  
@@ -22,15 +22,15 @@ export default function Connections() {
         const user = {
           email: res?.email,
           photoURL: res?.photoURL,
-          userID: res?.uid
+          
         }
         
         localStorage.setItem("user",JSON.stringify(user));
-        navigate('/connections');
+        navigate('/home');
         setLoading(false);
       }
     })
   }, []);
-  return loading? <Loader /> : <ConnectionLayout/>;
+  return loading? <Loader /> : <HomeLayoutComponent/>;
 
 }
