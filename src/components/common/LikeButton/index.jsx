@@ -15,7 +15,11 @@ function LikeButton({userID,postID}) {
     const [liked,setLiked]=useState(false);
     const [currentUser,setCurrentUser]=useState({});
     const handleLike=()=>{
+         
+         setLiked(!liked);
+         
         likePost(userID,postID,liked);
+        
     };
     const getcomment=(event)=>{
       setComment(event.target.value);

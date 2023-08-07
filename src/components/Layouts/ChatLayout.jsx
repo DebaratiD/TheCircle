@@ -13,7 +13,7 @@ export default function ChatLayout() {
 
   return (
     <>
-        <TopNavbar/>
+        <TopNavbar currentUser={currentUser}/>
         <ChatComponent currentUser={currentUser}/>
     </>
     

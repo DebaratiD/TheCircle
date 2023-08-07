@@ -1,10 +1,10 @@
-
-import React ,{useMemo, useState}from 'react'
-import HomeComponent from '../HomeComponent'
+import React,{useState,useMemo} from 'react'
+import ConnectionsComponent from '../common/Connections/index'
 import TopNavbar from '../common/TopNavbar'
 import {getCurrentUser} from '../../api/FirestoreAPIs'
 
-export default function HomeLayoutComponent() {
+
+function ConnectionLayout() {
   const [currentUser, setCurrentUser] = useState({});
   useMemo(()=>{
     getCurrentUser(setCurrentUser);
@@ -13,8 +13,10 @@ export default function HomeLayoutComponent() {
   return (
     <>
         <TopNavbar currentUser={currentUser}/>
-        <HomeComponent currentUser={currentUser}/>
+        <ConnectionsComponent currentUser={currentUser}/>
     </>
     
   )
 }
+
+export default ConnectionLayout
