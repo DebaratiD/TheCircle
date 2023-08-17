@@ -41,7 +41,7 @@ function PostStatus({currentUser}) {
   const getEditData=(posts)=>{
     setModalOpen(true);
    setStatus(posts?.status);
-   setPostImage(posts?.postImage);
+   if(posts?.postImage!=null) {setPostImage(posts?.postImage);}
    setCurrentPost(posts);
    setIsEdit(true);
   
