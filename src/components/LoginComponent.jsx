@@ -1,14 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState ,useMemo} from 'react'
 import { LoginAPI, GoogleSigninAPI } from '../api/AuthAPI'
 import LinkedIn from '../pictures/LinkedIn.png'
 import "../Sass/LoginComponent.scss"
 import GoogleButton from 'react-google-button';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { postUserData ,getCurrentUser} from '../api/FirestoreAPIs';
 
 export default function LoginComponent() {
   let navigate = useNavigate();
   const [credentials, setCredentials] = useState({});
+  const [currentUser, setCurrentUser] = useState({});
+  useMemo(()=>{
+    getCurrentUser(setCurrentUser)  
+    
+  },[])
   const login = async () =>{
     try{
       let foundUser = await LoginAPI(credentials.email, credentials.password);
@@ -32,8 +38,11 @@ export default function LoginComponent() {
     
     try{
       let res = await GoogleSigninAPI();
+      if(currentUser==null){
+      postUserData({name:res.user.displayName, email:res.user.email});
+      }
       toast.success('You have successfully logged in!');
-      navigate("/home");
+      
     }
     catch(err){
         toast.error(err.message);

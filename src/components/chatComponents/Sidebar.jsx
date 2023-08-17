@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "../../Sass/sidebar.scss"
 
 import CloseIcon from '@mui/icons-material/Close';
@@ -9,7 +9,11 @@ import UserProfile from './UserProfile';
 import userIcon from '../../pictures/user.jpg'
 
 function Sidebar({currentUser}) {
-    
+    const [allUsers,setAllUsers]= useState([]);
+    const [searchInput,setSearchInput]=useState("");
+    useEffect(()=>{
+
+    },[])
   return (
     <div className='sidebar'>
         <div className="sidebar-header">
@@ -30,7 +34,7 @@ function Sidebar({currentUser}) {
         <div className="sidebar-search">
             <div className="sidebar-search-input">
                 <SearchIcon/>
-                <input type="text" name="search" placeholder='Search...' />
+                <input type="text" value={searchInput} onChange={(e)=>{setSearchInput(e.target.value)}} name="search" placeholder='Search...' />
             </div>
         </div>
         <div className="sidebar-chatlist">

@@ -1,16 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState ,useMemo} from 'react'
 import { registerAPI, GoogleSigninAPI } from '../api/AuthAPI';
 import { useNavigate } from 'react-router-dom';
 import LinkedIn from "../pictures/LinkedIn.png"
 import "../Sass/RegisterComponent.scss";
 import { toast } from 'react-toastify';
 import GoogleButton from 'react-google-button';
-import { postUserData } from '../api/FirestoreAPIs';
+import { postUserData ,getCurrentUser} from '../api/FirestoreAPIs';
 
 
 export default function RegisterComponent() {
   let navigate = useNavigate();
   const [credentials, setCredentials] = useState({});
+  const [currentUser, setCurrentUser] = useState({});
+
+  useMemo(()=>{
+    getCurrentUser(setCurrentUser)
+    
+  },[])
   const register = async () =>{
     try{
       let foundUser = await registerAPI(credentials.email, credentials.password);
@@ -26,11 +32,12 @@ export default function RegisterComponent() {
   const googleRegister = async() => {
     
     try{
+      
       let res = await GoogleSigninAPI();
-      toast.success('Welcome to LinkedIn! Your account has been created.');
-      const getUserObj=JSON.parse(localStorage.getItem("user"));
-      postUserData({name:getUserObj.fullname, email:getUserObj.email});
-      navigate("/home");
+      if(currentUser==null){
+      postUserData({name:res.user.displayName, email:res.user.email});
+      }
+      toast.success('You have successfully registered with Google!');
     }
     catch(err){
         toast.error(err.message);

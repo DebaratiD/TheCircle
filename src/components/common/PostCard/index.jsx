@@ -18,6 +18,7 @@ function PostCard({posts,id,getEditData}) {
 
   useMemo(()=>{
     getCurrentUser(setCurrentUser)
+    
     getAllUsers(setAllUsers)
   },[])
   useEffect(()=>{
@@ -33,9 +34,7 @@ function PostCard({posts,id,getEditData}) {
         <img alt='profileImg' className='profileIcon' src={allUsers.filter((item)=>item.id===posts.userID).map(x=>x.imageLink)[0]} />
           <div className='post-header-text'>
             <p className='username' >{posts.userName}</p>
-            {/* onClick={()=>navigate('/profile',{
-              state:{id:posts?.userID,email:posts.userEmail},
-            })} */}
+            
               <p className='timestamp'>{posts.timeStamp}</p>
           </div>
       </div>
@@ -48,7 +47,7 @@ function PostCard({posts,id,getEditData}) {
        <p className='status'>{posts.status}</p>
        {posts.postImage? <img className='post-image' src={posts.postImage} alt="post-image"/>:<></>}
 
-        <LikeButton userID={currentUser.userID} postID={posts.postID}/>
+        <LikeButton userID={location?.state?.id} postID={posts.postID}/>
     </div>
     ):(
     isConnected || currentUser.userID===posts.userID?(

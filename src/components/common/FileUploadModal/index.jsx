@@ -17,7 +17,7 @@ export default function FileUploadModal({ modalOpen,
         onOk={() => setModalOpen(false)}
         onCancel={() => setModalOpen(false)}
         footer={[
-            <Button disabled={currentImage.name?false:true} key="submit" type="primary" onClick={hideInput}>
+            <Button  className="upload" disabled={currentImage.name?false:true} key="submit" type="primary" onClick={hideInput}>
                 Upload Profile Picture
             </Button>
         ]}

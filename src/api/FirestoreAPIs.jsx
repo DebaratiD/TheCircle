@@ -114,6 +114,8 @@ export const editProfileData=(userID,payload)=>{
     onSnapshot(likeQuery,(response)=>{
         let likes=response.docs.map((doc)=> doc.data());
         let likesCount=likes.length;
+       
+
         const isLiked=likes.some((like)=>like.userID==userID);
         setLikesCount(likesCount);
         setLiked(isLiked);

@@ -14,6 +14,7 @@ function LikeButton({userID,postID}) {
     const [postedComment,setPostedComment]=useState("");
     const [liked,setLiked]=useState(false);
     const [currentUser,setCurrentUser]=useState({});
+    
     const handleLike=()=>{
          
          setLiked(!liked);
@@ -33,6 +34,7 @@ function LikeButton({userID,postID}) {
     }
     useMemo(()=>{
         getCurrentUser(setCurrentUser);
+        
         getLikesByUser(userID,postID,setLiked,setLikesCount);
         getcomments(postID,setPostedComment);
     },[]);

@@ -1,32 +1,54 @@
 import React,{useState,useMemo} from 'react'
 import "./index.scss"
 import ProfileEdit from '../ProfileEdit'
-import { editProfileData, getSingleStatus, getSingleUser } from '../../../api/FirestoreAPIs';
+import { editProfileData, getSingleStatus, getSingleUser ,postStatus, getStatus,updatePost} from '../../../api/FirestoreAPIs';
 import PostCard from '../PostCard'
 import { BiPencil } from 'react-icons/bi';
 import { HiOutlinePencil} from 'react-icons/hi';
 import { uploadImageAPI } from '../../../api/ImageUpload';
 import { useLocation } from 'react-router-dom';
 import FileUploadModal from '../FileUploadModal';
-
+import ModalComponent from "../Modal";
+import { uploadPostImageAPI } from '../../../api/ImageUpload';
 function ProfileCard({currentUser,onEdit}) {
   let location = useLocation();
   const [AllStatuses,setAllStatus]=useState([]);
   const [currentImage, setCurrentImage] = useState({});
   const [currentProfile, setCurrentProfile] = useState({});
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen2, setModalOpen2] = useState(false);
   const [progress, setProgress] = useState(0);
   const [uploadInput, setUploadInput] = useState(true);
- 
+  const [isEdit, setIsEdit] = useState(false);
+  const [currentPost, setCurrentPost] = useState({});
+  const [status,setStatus]=useState("");
+  const [postImage, setPostImage] = useState('');
+
+
+  const updateStatus=()=>{
+    updatePost(currentPost.id,status, postImage);
+    setModalOpen(false);
+
+  }
+  const getEditData=(posts)=>{
+    setModalOpen(true);
+   setStatus(posts?.status);
+   setPostImage(posts?.postImage);
+   setCurrentPost(posts);
+   setIsEdit(true);
+  
+  }
+  
   const getImage = (event)=>{
     setCurrentImage(event.target.files[0]);
   } 
+ 
   const uploadImage = ()=>{
     let userId=Object.values(currentProfile).length==0?currentUser.userID:currentProfile[0]?.userID
-    uploadImageAPI(currentImage, userId, setModalOpen, setProgress, setCurrentImage, setUploadInput);
+    uploadImageAPI(currentImage, userId, setModalOpen2, setProgress, setCurrentImage, setUploadInput);
   }
-  const shouldEdit = currentProfile[0] && currentUser.userID==currentProfile[0].userID;
-  
+  const shouldEdit = Object.values(currentProfile).length==0?currentUser.userID:currentUser.userID==currentProfile[0].id;
+  console.log(shouldEdit);
   const [edit,setEdit]=useState(true);
   useMemo(()=>{
     if(location?.state?.id){
@@ -44,8 +66,8 @@ function ProfileCard({currentUser,onEdit}) {
   return (
   <>
     <FileUploadModal 
-    modalOpen={modalOpen} 
-    setModalOpen={setModalOpen}
+    modalOpen={modalOpen2} 
+    setModalOpen={setModalOpen2}
     getImage={getImage}
     uploadImage={uploadImage}
     currentImage={currentImage}
@@ -57,7 +79,7 @@ function ProfileCard({currentUser,onEdit}) {
       <div className="profile-card">
           <div className='bgPicture'>       
                   {shouldEdit?
-                  (<div className='profilePicture' onClick={()=>setModalOpen(true)}>
+                  (<div className='profilePicture' onClick={()=>setModalOpen2(true)}>
                     <img className='profilePicture-img' src={Object.values(currentProfile).length==0?currentUser.imageLink:currentProfile[0]?.imageLink} alt="profile-image"/>
                   </div>):(
                     <div className='profilePicture'>
@@ -97,7 +119,7 @@ function ProfileCard({currentUser,onEdit}) {
             currentUser.college:currentProfile[0]?.college:"College Name"}</p>
             <p className="company">{currentUser.company || currentProfile[0]?.company?
             Object.values(currentProfile).length==0?
-            currentUser.company:currentProfile[0]?.company:"Company you work(ed) at"}</p>
+            currentUser.company:currentProfile[0]?.company:"Company"}</p>
           </div>
          
          </div>    
@@ -112,10 +134,23 @@ function ProfileCard({currentUser,onEdit}) {
             currentUser.skills:currentProfile[0]?.skills:"Share your skills"}
           </p>
          </div>
+         <ModalComponent 
+    setStatus={setStatus} 
+    modalOpen={modalOpen} 
+    
+    setModalOpen={setModalOpen} 
+    status={status} 
+    isEdit={isEdit} 
+    updateStatus={updateStatus}
+    postImage={postImage}
+    setPostImage={setPostImage}
+    uploadPostImage={uploadPostImageAPI}
+    setCurrentPost={setCurrentPost}
+    currentPost = {currentPost}/>
          <div className='self-post'>
           {AllStatuses.map((posts)=>{
            return (<div key={posts.id}>
-            <PostCard posts={posts}/>
+            <PostCard posts={posts} getEditData={getEditData}/>
           </div>)
 
           })}
